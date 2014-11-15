@@ -1,11 +1,15 @@
 class GigsController < ApplicationController
   include ActionView::Helpers::NumberHelper
+  before_action :authenticate_user!
 
   def create
     @gig = Gig.create(gig_params)
 
-    client = Google::APIClient.new
-    client.authorization.access_token = current_user.token
+    client = Google::APIClient.new(
+      application_name: "Do I Need This Gig?",
+      application_version: "v1"
+    )
+    client.authorization.access_token = current_user.token.access_token
     calendar = client.discovered_api("calendar", "v3")
     event_body = {
       "summary" => @gig.summary,

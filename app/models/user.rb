@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  has_one :token
+
   def self.find_for_google_oauth2(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -12,8 +14,16 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.token = auth.credentials.token
     end
+  end
+
+  def refresh_or_create_token(auth)
+    return token.fresh_token if token
+    create_token(
+      access_token: auth.credentials.token,
+      refresh_token: auth.credentials.refresh_token,
+      expires_at: Time.at(auth.credentials.expires_at).to_datetime
+    )
   end
 
 end
