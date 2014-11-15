@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3.1'
+gem 'devise'
 gem 'font-awesome-rails'
+gem 'omniauth-google-oauth2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
