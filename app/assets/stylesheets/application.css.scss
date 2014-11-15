@@ -10,6 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+
+// Stylesheets are imported individually so that they have access to Bootstrap variables
+// and mixins. https://github.com/twbs/bootstrap-sass/issues/79#issuecomment-4428595
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
