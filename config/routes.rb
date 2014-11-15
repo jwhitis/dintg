@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :gigs, only: :create
   devise_for :users, controllers: { omniauth_callbacks: "user/omniauth_callbacks" }
   root "pages#index"
 
