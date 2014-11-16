@@ -1,32 +1,27 @@
 class GigsController < ApplicationController
-  include ActionView::Helpers::NumberHelper
   before_action :authenticate_user!
 
+  def new
+    @gig = Gig.new
+  end
+
   def create
-    @gig = Gig.create(gig_params)
+    @gig = current_user.gigs.new(gig_params)
 
-    client = Google::APIClient.new(
-      application_name: "Do I Need This Gig?",
-      application_version: "v1"
-    )
-    client.authorization.access_token = current_user.token.access_token
-    calendar = client.discovered_api("calendar", "v3")
-    event_body = {
-      "summary" => @gig.summary,
-      "description" => "Pays: #{number_to_currency(@gig.pay)}",
-      "location" => @gig.location,
-      "start" => { "dateTime" => @gig.starts_at },
-      "end" => { "dateTime" => @gig.ends_at }
-    }.to_json
+    if @gig.valid?
+      calendar_facade = CalendarFacade.new(current_user)
 
-    client.execute(
-      api_method: calendar.events.insert,
-      parameters: { "calendarId" => current_user.email },
-      body: event_body,
-      headers: { "Content-Type" => "application/json" }
-    )
+      if calendar_facade.create_event(@gig.to_params)
+        @gig.save
+        flash[:notice] = "You successfully added a gig to your calendar."
+      else
+        flash[:notice] = "Sorry, something went wrong. Please try again."
+      end
 
-    redirect_to root_path, notice: "You successfully created a calendar event."
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def gig_params

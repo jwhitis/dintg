@@ -4,7 +4,7 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_google_oauth2(omniauth_data)
 
     if @user.persisted?
-      @user.refresh_or_create_token(omniauth_data)
+      @user.find_or_create_token(omniauth_data)
       flash[:notice] = I18n.t("devise.omniauth_callbacks.success", kind: "Google")
       sign_in_and_redirect @user, event: :authentication
     else
