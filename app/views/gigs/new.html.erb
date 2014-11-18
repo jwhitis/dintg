@@ -1,3 +1,5 @@
+<h3>Do I Need This Gig?</h3>
+
 <%= form_for @gig do |f| %>
   <div class="form-group">
     <%= f.label :pay %>
@@ -25,6 +27,40 @@
   </div>
 
   <div class="form-group">
+    <%= hidden_field_tag :ignore_conflicts, false %>
     <%= f.submit "Save", class: "btn btn-default" %>
   </div>
 <% end %>
+
+<% if @conflicts.present? %>
+  <div id="conflicts-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>You already have the following events scheduled at that time:</p>
+
+          <ul>
+            <% @conflicts.each do |event| %>
+              <li><%= event.summary %></li>
+            <% end %>
+          </ul>
+
+          <p>Would you like to accept the gig anyway?</p>
+
+          <button type="button" class="btn btn-primary" id="confirm-button">Yes</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $("#conflicts-modal").modal("show");
+
+  $("#confirm-button").click(function() {
+    $("#conflicts-modal").modal("hide");
+    $("#ignore_conflicts").val(true);
+    $("#new_gig").submit();
+  });
+</script>

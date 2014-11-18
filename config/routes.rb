@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     get "sign_out", to: "devise/sessions#destroy", as: :destroy_user_session
   end
 
-  get "find_conflicts", to: "pages#index"
   root "gigs#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
