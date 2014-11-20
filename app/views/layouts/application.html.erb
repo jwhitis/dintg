@@ -2,19 +2,32 @@
 <html>
 <head>
   <title>Do I Need This Gig?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if notice.present? %>
-    <p><%= notice %></p>
-  <% end %>
+  <div id="wrapper">
+    <header>
+      <div class="inner">
+        <%= link_to "App Name", root_path %>
+      </div>
+    </header>
 
-  <% if alert.present? %>
-    <p><%= alert %></p>
-  <% end %>
+    <% if notice.present? %>
+      <p><%= notice %></p>
+    <% end %>
 
-  <%= yield %>
+    <% if alert.present? %>
+      <p><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+
+    <footer>
+      <p>&copy;2014 Jack Whitis</p>
+    </footer>
+  </div>
 </body>
 </html>

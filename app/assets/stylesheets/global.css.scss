@@ -1,3 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,300,400);
+
+$green: #00EA88;
+
 body {
-  padding: 15px;
+  height: 100%;
+  font-family: "Open Sans";
+}
+
+div#wrapper {
+  height: 100%;
+  background-image: url(diamond_tile.png);
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+
+  div.inner {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background-color: $green;
+  }
+
+  a {
+    padding: 5px 10px;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: .5px;
+    color: white;
+    text-shadow: 1px 1px 1px #999999;
+
+    &:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+div#sign-in {
+  height: 100%;
+  text-align: center;
+
+  a {
+    padding: 14px 20px;
+    display: inline-block;
+    position: relative;
+    top: 45%;
+    border: 2px solid white;
+    font-size: 16px;
+    letter-spacing: .5px;
+    background-color: $green;
+    color: white;
+    text-shadow: 1px 1px 1px #999999;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, .5);
+
+  p {
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 28px;
+    letter-spacing: .5px;
+    font-weight: lighter;
+    color: white;
+    text-shadow: 1px 1px 1px #999999;
+  }
 }
