@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :gigs, only: [:new, :create]
 
   get "settings", to: "user/settings#edit", as: :edit_user_settings
+  get "setup", to: "user/settings#setup", as: :setup_user_settings
 
   namespace :user do
     resource :settings, only: :update
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     get "sign-out", to: "devise/sessions#destroy", as: :destroy_user_session
   end
 
-  root "gigs#new"
+  root "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

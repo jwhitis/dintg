@@ -1,5 +1,6 @@
 class GigsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_user_has_completed_setup
 
   def new
     @gig = Gig.new
@@ -33,6 +34,12 @@ class GigsController < ApplicationController
   end
 
   private
+
+  def ensure_user_has_completed_setup
+    unless current_user.has_completed_setup?
+      redirect_to setup_user_settings_path
+    end
+  end
 
   def gig_params
     params.require(:gig).permit(:pay, :summary, :location, :starts_at, :ends_at)
