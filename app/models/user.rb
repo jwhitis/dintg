@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
+      user.calendar_id = auth.info.email
     end
   end
 
