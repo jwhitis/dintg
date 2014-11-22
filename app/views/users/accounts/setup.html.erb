@@ -1,0 +1,17 @@
+<%= form_for @user, url: users_account_path do |f| %>
+  <%= f.fields_for :configuration, @user.configuration do |config| %>
+    <div class="form-group">
+      <%= config.label :calendar_id, "Which calendar do you want to use?" %>
+      <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= config.label :monthly_goal, "How much money do you want to make each month?" %>
+      <%= config.text_field :monthly_goal, class: "form-control" %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit "Save", class: "btn btn-default" %>
+  </div>
+<% end %>

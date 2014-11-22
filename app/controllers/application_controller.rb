@@ -10,9 +10,8 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-  def find_calendars(user)
-    calendar_facade = CalendarFacade.new(user)
-    calendar_facade.list_calendars
+  def sanitize_currency(value)
+    value.tr("$, ", "")
   end
 
 end

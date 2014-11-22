@@ -18,7 +18,7 @@ class CalendarFacade
   def create_event(event_params)
     result = client.execute(
       api_method: calendar.events.insert,
-      parameters: { "calendarId" => user.calendar_id },
+      parameters: { "calendarId" => user.configuration.calendar_id },
       body: event_params.to_json,
       headers: { "Content-Type" => "application/json" }
     )
@@ -30,7 +30,7 @@ class CalendarFacade
     result = client.execute(
       api_method: calendar.events.list,
       parameters: {
-        "calendarId" => user.calendar_id,
+        "calendarId" => user.configuration.calendar_id,
         "timeMin" => gig.starts_at.iso8601,
         "timeMax" => gig.ends_at.iso8601
       }

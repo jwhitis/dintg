@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :gigs, only: [:new, :create]
 
   namespace :users do
-    resource :account, only: [:edit, :update]
-    resource :configuration, only: [:edit, :update]
+    resource :account, only: [:edit, :update] do
+      get "setup"
+    end
   end
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }

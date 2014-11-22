@@ -1,6 +1,7 @@
 class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_user_has_completed_setup
+  before_action :sanitize_currency_params, only: :create
 
   def new
     @gig = Gig.new
@@ -22,9 +23,9 @@ class GigsController < ApplicationController
 
       if calendar_facade.create_event(@gig.to_params)
         @gig.save
-        flash[:notice] = "You successfully added a gig to your calendar."
+        flash[:notice] = "The gig has been added to your Google calendar."
       else
-        flash[:notice] = "Sorry, something went wrong. Please try again."
+        flash[:alert] = "Oops, something went wrong. Please try again."
       end
 
       redirect_to root_path
@@ -37,7 +38,14 @@ class GigsController < ApplicationController
 
   def ensure_user_has_completed_setup
     unless current_user.has_completed_setup?
-      redirect_to edit_users_configuration_path
+      flash[:notice] = "Just answer a few questions to get started."
+      redirect_to setup_users_account_path
+    end
+  end
+
+  def sanitize_currency_params
+    if pay = params[:gig][:pay]
+      params[:gig][:pay] = sanitize_currency(pay)
     end
   end
 

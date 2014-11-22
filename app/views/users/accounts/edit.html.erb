@@ -9,7 +9,7 @@
     <%= f.text_field :last_name, class: "form-control" %>
   </div>
 
-  <%= f.fields_for :configuration, @user.configuration do |config| %>
+  <%= f.fields_for :configuration do |config| %>
     <div class="form-group">
       <%= config.label :calendar_id, "Calendar" %>
       <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
