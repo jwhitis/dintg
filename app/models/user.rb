@@ -1,33 +1,18 @@
 class User < ActiveRecord::Base
-  include ActionView::Helpers::NumberHelper
-
   # Include default devise modules. Others available are:
   # :confirmable, :database_authenticatable, :lockable, :recoverable, :registerable
   # :timeoutable, and :validatable
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_one :token
-  has_many :gigs
+  has_one :token, dependent: :destroy
+  has_one :configuration, dependent: :destroy
+  has_many :gigs, dependent: :destroy
 
-  def access_token
-    token.fresh_token
-  end
-
-  def find_or_create_token(auth)
-    return access_token if token
-    create_token(
-      access_token: auth.credentials.token,
-      refresh_token: auth.credentials.refresh_token,
-      expires_at: Time.at(auth.credentials.expires_at).to_datetime
-    )
-  end
-
-  def formatted_monthly_goal
-    number_to_currency(self.monthly_goal)
-  end
+  accepts_nested_attributes_for :token
+  accepts_nested_attributes_for :configuration
 
   def has_completed_setup?
-    self.monthly_goal.present?
+    configuration.monthly_goal.present?
   end
 
   def self.find_for_google_oauth2(auth)
@@ -35,7 +20,14 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.calendar_id = auth.info.email
+
+      token = user.build_token
+      token.access_token = auth.credentials.token
+      token.refresh_token = auth.credentials.refresh_token
+      token.expires_at = Time.at(auth.credentials.expires_at).to_datetime
+
+      config = user.build_configuration
+      config.calendar_id = auth.info.email
     end
   end
 

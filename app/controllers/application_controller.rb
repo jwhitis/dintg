@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def find_calendars(user)
+    calendar_facade = CalendarFacade.new(user)
+    calendar_facade.list_calendars
+  end
+
 end

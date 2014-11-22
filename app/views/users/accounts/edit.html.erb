@@ -1,0 +1,33 @@
+<%= form_for @user, url: users_account_path do |f| %>
+  <div class="form-group">
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <%= f.fields_for :configuration, @user.configuration do |config| %>
+    <div class="form-group">
+      <%= config.label :calendar_id, "Calendar" %>
+      <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= config.label :monthly_goal, "Monthly Goal" %>
+      <%= config.text_field :monthly_goal, class: "form-control" %>
+    </div>
+
+    <div class="checkbox">
+      <%= config.label :exclude_unpaid do %>
+        <%= config.check_box :exclude_unpaid %> Exclude Unpaid
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit "Save", class: "btn btn-default" %>
+  </div>
+<% end %>

@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
   resources :gigs, only: [:new, :create]
 
-  get "settings", to: "user/settings#edit", as: :edit_user_settings
-  get "setup", to: "user/settings#setup", as: :setup_user_settings
-
-  namespace :user do
-    resource :settings, only: :update
+  namespace :users do
+    resource :account, only: [:edit, :update]
+    resource :configuration, only: [:edit, :update]
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: "user/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   devise_scope :user do
-    get "sign-in", to: "devise/sessions#new", as: :new_user_session
-    get "sign-out", to: "devise/sessions#destroy", as: :destroy_user_session
+    get "sign_in", to: "devise/sessions#new", as: :new_user_session
+    get "sign_out", to: "devise/sessions#destroy", as: :destroy_user_session
   end
 
   root "home#index"

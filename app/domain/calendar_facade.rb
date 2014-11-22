@@ -4,7 +4,7 @@ class CalendarFacade
   def initialize(user)
     self.user = user
     self.client = new_client
-    client.authorization.access_token = user.access_token
+    client.authorization.access_token = user.token.fresh_token
   end
 
   def list_calendars

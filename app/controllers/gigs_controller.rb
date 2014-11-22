@@ -37,7 +37,7 @@ class GigsController < ApplicationController
 
   def ensure_user_has_completed_setup
     unless current_user.has_completed_setup?
-      redirect_to setup_user_settings_path
+      redirect_to edit_users_configuration_path
     end
   end
 

@@ -1,4 +1,4 @@
-<%= form_for @user, url: user_settings_path do |f| %>
+<%= form_for @configuration, url: users_configuration_path do |f| %>
   <div class="form-group">
     <%= f.label :calendar_id, "Which calendar do you want to use?" %>
     <%= f.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
