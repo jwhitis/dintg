@@ -1,0 +1,31 @@
+<div id="recommendation-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>The gig is in <%= gig.starts_at.strftime("%B") %></p>
+        <p>You're currently at <%= recommendation.progress_score_as_percentage %> of where you should be for this point in the <%= recommendation.time_period_for_gig %>.<p>
+
+        <% if recommendation.recommend_gig? %>
+          <p>You should take the gig.<p>
+        <% else %>
+          <p>You don't need to take the gig.</p>
+        <% end %>
+
+        <% if conflicts.present? %>
+          <p>You already have the following events scheduled at that time:</p>
+
+          <ul>
+            <% conflicts.each do |event| %>
+              <li><%= event.summary %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <p>Would you like to take the gig?</p>
+
+        <button type="button" class="btn btn-primary" id="confirm-button">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

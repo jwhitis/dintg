@@ -13,12 +13,10 @@ class GigsController < ApplicationController
     if @gig.valid?
       calendar_facade = CalendarFacade.new(current_user)
 
-      unless params[:ignore_conflicts] == "true"
+      unless params[:double_confirmation] == "true"
+        @recommendation = Recommendation.new(current_user, @gig)
         @conflicts = calendar_facade.find_conflicts(@gig)
-
-        if @conflicts.any?
-          render :new and return
-        end
+        render :new and return
       end
 
       if calendar_facade.create_event(@gig.to_params)

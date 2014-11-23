@@ -22,8 +22,8 @@ class Gig < ActiveRecord::Base
   end
 
   def self.for_period(time_period)
-    TimeRangeDictionary.time_range_for_period(time_period)
-    where(starts_at: Time.now.beginning_of_month..Time.now.end_of_month)
+    time_range = TimeRangeDictionary.time_range_for_period(time_period)
+    where(starts_at: time_range)
   end
 
 end

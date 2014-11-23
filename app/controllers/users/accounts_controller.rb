@@ -39,7 +39,7 @@ class Users::AccountsController < ApplicationController
   def success_message
     if request.referer.end_with?("setup")
       "Thanks for completing your setup."
-    elsif request.referer.end_with("edit")
+    elsif request.referer.end_with?("edit")
       "Your changes have been saved."
     end
   end
