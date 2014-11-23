@@ -17,4 +17,13 @@ class Gig < ActiveRecord::Base
     number_to_currency(self.pay)
   end
 
+  def self.paid
+    where(paid: true)
+  end
+
+  def self.for_period(time_period)
+    TimeRangeDictionary.time_range_for_period(time_period)
+    where(starts_at: Time.now.beginning_of_month..Time.now.end_of_month)
+  end
+
 end

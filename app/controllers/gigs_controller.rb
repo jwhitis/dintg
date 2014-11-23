@@ -25,7 +25,7 @@ class GigsController < ApplicationController
         @gig.save
         flash[:notice] = "The gig has been added to your Google calendar."
       else
-        flash[:alert] = "Oops, something went wrong. Please try again."
+        flash[:alert] = "Sorry, something went wrong. Please try again."
       end
 
       redirect_to root_path

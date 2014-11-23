@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141122012254) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "paid",                               default: false, null: false
   end
 
   add_index "gigs", ["user_id"], name: "index_gigs_on_user_id", using: :btree
