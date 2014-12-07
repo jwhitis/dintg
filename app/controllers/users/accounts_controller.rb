@@ -46,7 +46,7 @@ class Users::AccountsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name,
-      { configuration_attributes: [:calendar_id, :monthly_goal, :exclude_unpaid] }
+      { configuration_attributes: [:calendar_id, :monthly_goal, :time_period, :exclude_unpaid] }
     )
   end
 
