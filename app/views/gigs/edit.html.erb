@@ -32,16 +32,16 @@
   </div>
 <% end %>
 
-<% if @recommendation %>
-  <%= render "create_gig_modal", recommendation: @recommendation, conflicts: @conflicts %>
+<% if @conflicts.present? %>
+  <%= render "update_gig_modal", conflicts: @conflicts %>
 
   <script type="text/javascript">
-    $("#create-gig-modal").modal("show");
+    $("#update-gig-modal").modal("show");
 
     $("#confirm-button").click(function() {
-      $("#create-gig-modal").modal("hide");
+      $("#update-gig-modal").modal("hide");
       $("#double_confirmation").val(true);
-      $(".new_gig").submit();
+      $(".edit_gig").submit();
     });
   </script>
 <% end %>

@@ -45,7 +45,7 @@ class RecommendationPresenter
   end
 
   def formatted_time_period
-    time_period = @recommendation.user.configuration.time_period
+    time_period = @recommendation.time_period
     send("formatted_#{time_period}")
   end
 

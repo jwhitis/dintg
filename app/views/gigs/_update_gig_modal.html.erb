@@ -1,0 +1,14 @@
+<div id="update-gig-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= render "conflicts", conflicts: @conflicts %>
+
+        <p>Would you still like to update the gig?</p>
+
+        <button type="button" class="btn btn-primary" id="confirm-button">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

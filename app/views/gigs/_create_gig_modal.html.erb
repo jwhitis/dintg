@@ -1,4 +1,4 @@
-<div id="recommendation-modal" class="modal fade">
+<div id="create-gig-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -8,13 +8,7 @@
         </p>
 
         <% if conflicts.present? %>
-          <p>You have the following events scheduled during that time:</p>
-
-          <ul>
-            <% conflicts.each do |event| %>
-              <li><%= event.summary %></li>
-            <% end %>
-          </ul>
+          <%= render "conflicts", conflicts: @conflicts %>
         <% else %>
           <p>Good news, you don't have any schedule conflicts.</p>
         <% end %>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :gigs, only: [:new, :create]
+  resources :gigs, except: :show
 
   namespace :users do
     resource :account, only: [:edit, :update] do
