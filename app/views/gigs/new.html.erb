@@ -31,7 +31,7 @@
 <% end %>
 
 <% if @recommendation %>
-  <%= render "recommendation_modal", gig: @gig, recommendation: @recommendation, conflicts: @conflicts %>
+  <%= render "recommendation_modal", recommendation: @recommendation, conflicts: @conflicts %>
 
   <script type="text/javascript">
     $("#recommendation-modal").modal("show");

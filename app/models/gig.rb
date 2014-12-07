@@ -17,13 +17,16 @@ class Gig < ActiveRecord::Base
     number_to_currency(self.pay)
   end
 
-  def self.paid
-    where(paid: true)
+  def in_past?
+    self.starts_at < Time.now
   end
 
-  def self.for_period(time_period)
-    time_range = TimeRangeDictionary.time_range_for_period(time_period)
+  def self.within_time_range(time_range)
     where(starts_at: time_range)
+  end
+
+  def self.paid
+    where(paid: true)
   end
 
 end

@@ -15,14 +15,6 @@ class User < ActiveRecord::Base
     configuration.monthly_goal.present?
   end
 
-  def gigs_for_period(time_period)
-    gigs.for_period(time_period)
-  end
-
-  def paid_gigs_for_period(time_period)
-    gigs.paid.for_period(time_period)
-  end
-
   def self.find_for_google_oauth2(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
