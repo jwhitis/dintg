@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204001033) do
+ActiveRecord::Schema.define(version: 20141207163645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141204001033) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "paid",                               default: false, null: false
+    t.string   "google_id",                          default: "",    null: false
   end
 
   add_index "gigs", ["user_id"], name: "index_gigs_on_user_id", using: :btree
