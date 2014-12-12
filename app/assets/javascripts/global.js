@@ -6,9 +6,9 @@ $(document).on("ready page:load", function() {
 
   // Animate background color on button hover
   $("div#sign-in a").hover(function() {
-    $("div#wrapper").animate({ "opacity" : ".75" }, 200);
+    $("div#overlay").animate({ "opacity" : ".5" }, 200);
   }, function() {
-    $("div#wrapper").animate({ "opacity" : "1" }, 200); 
+    $("div#overlay").animate({ "opacity" : "1" }, 200); 
   });
 
 });

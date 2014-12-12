@@ -8,10 +8,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="overlay"></div>
   <div id="wrapper">
     <header>
-      <div class="inner">
-        <%= link_to "App Name", root_path %>
+      <div class="container">
+        <% if user_signed_in? %>
+          <%= link_to "Log Out", destroy_user_session_path, class: "pull-right" %>
+        <% else %>
+          <%= link_to "Log In", user_omniauth_authorize_path(:google_oauth2), class: "pull-right" %>
+        <% end %>
       </div>
     </header>
 
@@ -24,10 +29,6 @@
     <% end %>
 
     <%= yield %>
-
-    <footer>
-      <p>&copy;2014 Jack Whitis</p>
-    </footer>
   </div>
 </body>
 </html>
