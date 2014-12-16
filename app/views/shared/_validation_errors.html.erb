@@ -1,8 +1,8 @@
 <% if resource.errors.any? %>
-  <div id="validation-errors" class="alert alert-danger">
+  <div id="validation-errors">
     <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= "#{message}." %></li>
+      <% formatted_error_messages(resource).each do |message| %>
+        <li><%= message %></li>
       <% end %>
     </ul>
   </div>

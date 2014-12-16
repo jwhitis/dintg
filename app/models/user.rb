@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :token
   accepts_nested_attributes_for :configuration
 
+  def attributes_with_custom_error_message
+    [:"configuration.monthly_goal"]
+  end
+
   def has_completed_setup?
     configuration.monthly_goal.present?
   end

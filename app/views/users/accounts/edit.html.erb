@@ -1,39 +1,67 @@
-<%= form_for @user, url: users_account_path do |f| %>
-  <div class="form-group">
-    <%= f.label :first_name, "First Name" %>
-    <%= f.text_field :first_name, class: "form-control" %>
-  </div>
+<div id="accounts-edit">
+  <h3>Account Settings</h3>
 
-  <div class="form-group">
-    <%= f.label :last_name, "Last Name" %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
+  <%= form_for @user, url: users_account_path do |f| %>
+    <%= render "shared/validation_errors", resource: @user %>
 
-  <%= f.fields_for :configuration do |config| %>
-    <div class="form-group">
-      <%= config.label :calendar_id, "Calendar" %>
-      <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
+    <div class="form-group row">
+      <div class="col-xs-6">
+        <%= f.label :first_name, "First Name", class: "sr-only" %>
+        <%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+      </div>
+
+      <div class="col-xs-6">
+        <%= f.label :last_name, "Last Name", class: "sr-only" %>
+        <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+      </div>
     </div>
 
-    <div class="form-group">
-      <%= config.label :monthly_goal, "Monthly Goal" %>
-      <%= config.text_field :monthly_goal, class: "form-control" %>
-    </div>
+    <%= f.fields_for :configuration do |config| %>
+      <div class="form-group">
+        <%= config.label :calendar_id, class: "instructions" do %>
+          Choose the Google calendar where new events should be added:
+        <% end %>
+        <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
+      </div>
 
-    <div class="form-group">
-      <%= config.label :time_period, "Time Period" %>
-      <%= config.collection_select :time_period, TimeRangeDictionary::TIME_PERIODS, :to_s, :titleize,
-        {}, class: "form-control" %>
-    </div>
+      <div class="form-group monthly-goal">
+        <%= config.label :monthly_goal, class: "instructions" do %>
+          Enter the amount that you want to make each <b>month</b>:
+        <% end %>
+        <%= fa_icon "dollar" %>
+        <%= config.text_field :monthly_goal, value: config.object.formatted_monthly_goal(""),
+          placeholder: "Monthly Goal", class: "form-control" %>
+      </div>
 
-    <div class="checkbox">
-      <%= config.label :exclude_unpaid do %>
-        <%= config.check_box :exclude_unpaid %> Exclude Unpaid
-      <% end %>
+      <div class="form-group time-period">
+        <p class="instructions">Choose how you want your progress score to be calculated:</p>
+        <%= config.collection_radio_buttons :time_period, TimeRangeDictionary::TIME_PERIODS, :to_s,
+          :titleize do |builder| %>
+          <%= builder.label { builder.radio_button(class: "hidden") + builder.text } %>
+        <% end %>
+      </div>
+
+      <div class="checkbox">
+        <%= config.label :exclude_unpaid do %>
+          <%= config.check_box :exclude_unpaid %>
+          Gigs that have not been marked as <b>paid</b> do not count towards your goal
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="form-footer">
+      <%= f.submit "Save" %>
+      <%= link_to "Cancel", root_path, class: "cancel" %>
     </div>
   <% end %>
+</div>
 
-  <div class="form-group">
-    <%= f.submit "Save", class: "btn btn-default" %>
-  </div>
-<% end %>
+<script type="text/javascript">
+  $("div.time-period label").not(".selected").click(function() {
+    $("div.time-period label.selected").removeClass("selected");
+    $(this).addClass("selected");
+  });
+
+  var radio_id = $("div.time-period input:checked").attr("id");
+  $("label[for='" + radio_id + "']").click();
+</script>
