@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
-* Ignore OmniAuth credentials.
+# Ignore OmniAuth credentials.
 /config/initializers/aa_oauth_credentials.rb
+
+# Ignore POW configuration for RVM.
+/.powenv
