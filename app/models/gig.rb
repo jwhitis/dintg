@@ -3,8 +3,8 @@ class Gig < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_numericality_of :monthly_goal, greater_than: 0, less_than: 1000000,
-    message: "Please enter a monthly goal that is more than $0.00 and less than $1,000,000.00."
+  validates_numericality_of :pay, greater_than: 0, less_than: 1000000,
+    message: "Please enter a payment amount that is more than $0.00 and less than $1,000,000.00."
 
   def attributes_with_custom_error_message
     [:pay]

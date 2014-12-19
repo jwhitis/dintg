@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sanitize_currency(value)
-    value.tr("$, ", "")
+    value.tr("$,", "")
   end
 
 end
