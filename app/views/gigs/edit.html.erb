@@ -1,36 +1,45 @@
-<%= render "shared/validation_errors", resource: @gig %>
+<div id="gigs-edit">
+  <h3>Edit Gig</h3>
 
-<%= form_for @gig do |f| %>
-  <div class="form-group">
-    <%= f.label :summary %>
-    <%= f.text_field :summary, class: "form-control" %>
-  </div>
+  <%= form_for @gig do |f| %>
+    <%= render "shared/validation_errors", resource: @gig %>
 
-  <div class="form-group">
-    <%= f.label :location %>
-    <%= f.text_field :location, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :summary, "Title", class: "sr-only" %>
+      <%= f.text_field :summary, placeholder: "Title", class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :pay %>
-    <%= f.text_field :pay, value: @gig.formatted_pay(""), class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :location, class: "sr-only" %>
+      <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :starts_at, "Start Time" %>
-    <%= f.datetime_select :starts_at, class: "form-control" %>
-  </div>
+    <div class="form-group pay">
+      <%= f.label :pay, class: "sr-only" %>
+      <%= f.text_field :pay, placeholder: "Pay", value: @gig.formatted_pay(""),
+        class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :ends_at, "End Time" %>
-    <%= f.datetime_select :ends_at, class: "form-control" %>
-  </div>
+    <%= f.hidden_field :date, value: @gig.starts_at.strftime("%Y-%-m-%-d") %>
 
-  <div class="form-group">
+    <div class="form-group">
+      <%= f.label :starts_at, "Start Time" %>
+      <%= f.select(:starts_at, time_options_for_select(@gig.starts_at), {}, class: "form-control") %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :ends_at, "End Time" %>
+      <%= f.select(:ends_at, time_options_for_select(@gig.ends_at, 1), {}, class: "form-control") %>
+    </div>
+
     <%= hidden_field_tag :double_confirmation, false %>
-    <%= f.submit "Save", class: "btn btn-default" %>
-  </div>
-<% end %>
+
+    <div class="form-footer">
+      <%= f.submit "Save" %>
+      <%= link_to "Cancel", root_path, class: "cancel" %>
+    </div>
+  <% end %>
+</div>
 
 <% if @conflicts.present? %>
   <%= render "update_gig_modal", conflicts: @conflicts %>

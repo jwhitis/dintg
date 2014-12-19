@@ -1,0 +1,7 @@
+<% calendar.days_in_weeks.each do |week| %>
+  <div class="week" style="float: left;">
+    <% week.each do |day| %>
+      <%= link_to day[0], calendar_day_path(calendar, day) %>
+    <% end %>
+  </div>
+<% end %>

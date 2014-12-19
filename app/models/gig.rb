@@ -1,6 +1,8 @@
 class Gig < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
+  attr_accessor :date
+
   belongs_to :user
 
   validates_numericality_of :pay, greater_than: 0, less_than: 1000000,

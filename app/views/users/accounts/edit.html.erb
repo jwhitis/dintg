@@ -21,7 +21,8 @@
         <%= config.label :calendar_id, class: "instructions" do %>
           Choose the Google calendar where new events should be added:
         <% end %>
-        <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
+        <%= config.collection_select :calendar_id, @calendars, :id, :summary, {},
+          class: "form-control" %>
       </div>
 
       <div class="form-group monthly-goal">
@@ -35,8 +36,8 @@
 
       <div class="form-group time-period">
         <p class="instructions">Choose how you want your progress score to be calculated:</p>
-        <%= config.collection_radio_buttons :time_period, TimeRangeDictionary::TIME_PERIODS, :to_s,
-          :titleize do |builder| %>
+        <%= config.collection_radio_buttons :time_period, TimeRangeDictionary::TIME_PERIODS,
+          :to_s, :titleize do |builder| %>
           <%= builder.label { builder.radio_button(class: "hidden") + builder.text } %>
         <% end %>
       </div>

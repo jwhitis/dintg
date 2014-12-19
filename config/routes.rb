@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :gigs, except: :show
+  resources :gigs, except: :show do
+    get "calendar", on: :collection
+  end
 
   namespace :users do
     resource :account, only: [:edit, :update] do

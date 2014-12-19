@@ -2,13 +2,26 @@ class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_user_has_completed_setup
   before_action :sanitize_currency_params, only: [:create, :update]
+  before_action :combine_time_params, only: [:create, :update]
 
   def index
     @gigs = current_user.gigs
   end
 
+  def calendar
+    @calendar = CalendarBuilder.new(
+      params[:year] || current_time.year,
+      params[:month] || current_time.month,
+    )
+    respond_to :html, :js
+  end
+
   def new
-    @gig = Gig.new
+    unless params[:date]
+      redirect_to calendar_gigs_path and return
+    end
+
+    @gig = Gig.new(date: params[:date])
   end
 
   def create
@@ -103,8 +116,17 @@ class GigsController < ApplicationController
     end
   end
 
+  def combine_time_params
+    params[:gig][:starts_at] = "#{params[:gig][:date]} #{params[:gig][:starts_at]}"
+    params[:gig][:ends_at] = "#{params[:gig][:date]} #{params[:gig][:ends_at]}"
+  end
+
+  def current_time
+    @current_time ||= Time.now
+  end
+
   def gig_params
-    params.require(:gig).permit(:pay, :summary, :location, :starts_at, :ends_at)
+    params.require(:gig).permit(:pay, :summary, :location, :date, :starts_at, :ends_at)
   end
 
 end
