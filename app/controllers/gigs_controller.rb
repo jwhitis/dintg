@@ -15,15 +15,15 @@ class GigsController < ApplicationController
     @gig = current_user.gigs.new(gig_params)
 
     if @gig.valid?
-      calendar_facade = CalendarFacade.new(current_user)
+      google_facade = GoogleAPIFacade.new(current_user)
 
       unless params[:double_confirmation] == "true"
         @recommendation = Recommendation.new(current_user, @gig)
-        @conflicts = calendar_facade.find_conflicts(@gig)
+        @conflicts = google_facade.find_conflicts(@gig)
         render :new and return
       end
 
-      event = calendar_facade.create_event(@gig.to_params)
+      event = google_facade.create_event(@gig.to_params)
 
       if event.status == "confirmed"
         @gig.google_id = event.id
@@ -48,17 +48,17 @@ class GigsController < ApplicationController
     @gig.assign_attributes(gig_params)
 
     if @gig.valid?
-      calendar_facade = CalendarFacade.new(current_user)
+      google_facade = GoogleAPIFacade.new(current_user)
 
       unless params[:double_confirmation] == "true"
-        @conflicts = calendar_facade.find_conflicts(@gig)
+        @conflicts = google_facade.find_conflicts(@gig)
 
         if @conflicts.any?
           render :edit and return
         end
       end
 
-      event = calendar_facade.update_event(@gig.google_id, @gig.to_params)
+      event = google_facade.update_event(@gig.google_id, @gig.to_params)
 
       if event.status == "confirmed"
         @gig.update_attributes(gig_params)
@@ -76,9 +76,9 @@ class GigsController < ApplicationController
   def destroy
     @gig = Gig.find(params[:id])
 
-    calendar_facade = CalendarFacade.new(current_user)
+    google_facade = GoogleAPIFacade.new(current_user)
 
-    if calendar_facade.destroy_event(@gig.google_id)
+    if google_facade.destroy_event(@gig.google_id)
       @gig.destroy
       flash[:notice] = "The gig has been removed from your Google calendar."
       redirect_to root_path

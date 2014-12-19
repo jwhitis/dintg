@@ -1,4 +1,4 @@
-class CalendarFacade
+class GoogleAPIFacade
 
   def initialize(user)
     @user = user

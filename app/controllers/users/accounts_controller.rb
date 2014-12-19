@@ -26,8 +26,8 @@ class Users::AccountsController < ApplicationController
   end
 
   def find_calendars(user)
-    calendar_facade = CalendarFacade.new(user)
-    calendar_facade.list_calendars
+    google_facade = GoogleAPIFacade.new(user)
+    google_facade.list_calendars
   end
 
   def sanitize_currency_params
