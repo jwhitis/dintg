@@ -14,17 +14,27 @@ class GoogleAPIFacade
     result.data.items
   end
 
+  def list_events_for_month(year, month)
+    month_time = Time.new(year, month)
+    list_events(month_time.beginning_of_month, month_time.end_of_month)
+  end
+
   def find_conflicts(gig)
+    events = list_events(gig.starts_at, gig.ends_at)
+    events.delete_if { |event| event.id == gig.google_id }
+  end
+
+  def list_events(start_time, end_time)
     result = @client.execute(
       api_method: calendar_api.events.list,
       parameters: {
         "calendarId" => @user.configuration.calendar_id,
-        "timeMin" => gig.starts_at.iso8601,
-        "timeMax" => gig.ends_at.iso8601
+        "timeMin" => start_time.iso8601,
+        "timeMax" => end_time.iso8601
       }
     )
 
-    result.data.items.delete_if { |event| event.id == gig.google_id }
+    result.data.items
   end
 
   def create_event(event_params)

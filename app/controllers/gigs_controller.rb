@@ -12,7 +12,9 @@ class GigsController < ApplicationController
     @calendar = CalendarBuilder.new(
       params[:year] || current_time.year,
       params[:month] || current_time.month,
+      current_user
     )
+
     respond_to :html, :js
   end
 

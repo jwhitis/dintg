@@ -4,16 +4,20 @@ module ApplicationHelper
     if day[1]
       new_gig_path(date: day[1])
     else
-      if day[0] < 7
-        year = calendar.month == 12 ? calendar.year + 1 : calendar.year
-        month = calendar.month == 12 ? 1 : calendar.month + 1
-      else
-        year = calendar.month == 1 ? calendar.year - 1 : calendar.year
-        month = calendar.month == 1 ? 12 : calendar.month - 1
-      end
-
-      calendar_gigs_path(year: year, month: month)
+      day[0] < 7 ? next_month_path(calendar) : previous_month_path(calendar)
     end
+  end
+
+  def previous_month_path(calendar)
+    year = calendar.month == 1 ? calendar.year - 1 : calendar.year
+    month = calendar.month == 1 ? 12 : calendar.month - 1
+    calendar_gigs_path(year: year, month: month)
+  end
+
+  def next_month_path(calendar)
+    year = calendar.month == 12 ? calendar.year + 1 : calendar.year
+    month = calendar.month == 12 ? 1 : calendar.month + 1
+    calendar_gigs_path(year: year, month: month)
   end
 
   def time_options_for_select(time, offset = 0, minute_step = 15, start_hour = 0)

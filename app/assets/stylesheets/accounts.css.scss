@@ -4,12 +4,12 @@ div#accounts-edit {
   h3 {
     margin: 0;
     padding: 10px 15px;
-    border-bottom: 2px solid rgba(darken($light-blue, 5%), .85);
+    border-bottom: 2px solid rgba(black, .15);
     font-size: 20px;
+    letter-spacing: .5px;
     color: white;
     text-shadow: 0 1px 1px rgba(black, .15);
     background-color: rgba($light-blue, .85);
-    background-clip: padding-box;
   }
 
   form {
