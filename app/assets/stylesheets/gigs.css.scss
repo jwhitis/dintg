@@ -35,11 +35,11 @@ div#calendar {
 
   table {
     width: 100%;
-    border-collapse: separate;
     text-shadow: 0 1px 1px rgba(black, .15);
     background-color: rgba(white, .25);
 
     th, td {
+      width: 1 / 7 * 100%;
       text-align: center;
     }
   }
@@ -52,59 +52,96 @@ div#calendar {
     background-color: rgba(#333333, .85);
   }
 
-  td {
-    border-top: 1px solid rgba(white, .25);
-    border-right: 1px solid rgba(black, .15);
-    border-bottom: 1px solid rgba(black, .15);
-    border-left: 1px solid rgba(white, .25);
-    background-color: $light-orange;
+  div.flipper-container, div.front, div.back {
+    width: 100%;
+    height: 46px;
+  }
 
-    &:active {
-      border: none;
-      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, .15);
-    }
+  div.flipper-container {
+    perspective: 1000;
 
-    a {
-      width: 100%;
-      display: inline-block;
-      font-size: 18px;
-      line-height: 44px;
-      color: darken(white, 10%);
+    div.flipper {
+      position: relative;
 
-      &:hover {
-        text-decoration: none;
-        color: white;
+      &:not(.disabled) {
+        transition: .5s; // Flip speed
+        transform-style: preserve-3d;
       }
 
-      &:active {
-        color: darken(white, 10%);
+      // Flip pane when "flip" class is added
+      &.flip {
+        transform: rotateY(180deg);
       }
 
-      &:focus {
-        text-decoration: none;
-      }
-    }
-
-    &.disabled {
-      border-top: 1px solid rgba(white, .15);
-      border-left: 1px solid rgba(white, .15);
-      background-color: rgba(#333333, .85);
-
-      &:active {
-        border: none;
-        background-color: rgba(darken(#333333, 5%), .85);
+      div.front, div.back {
+        backface-visibility: hidden; // Hide back of pane
+        position: absolute;
+        top: 0;
+        left: 0;
       }
 
-      a {
-        color: #999999;
-
-        &:hover {
-          color: lighten(#999999, 10%);
-        }
+      div.front {
+        z-index: 9999;
+        border-top: 1px solid rgba(white, .25);
+        border-right: 1px solid rgba(black, .15);
+        border-bottom: 1px solid rgba(black, .15);
+        border-left: 1px solid rgba(white, .25);
+        background-color: $light-orange;
+        transform: rotateY(0deg); // For Firefox 31
 
         &:active {
-          color: #999999;
+          border: none;
+          box-shadow: inset 1px 1px 5px rgba(0, 0, 0, .15);
         }
+
+        a {
+          width: 100%;
+          display: inline-block;
+          font-size: 18px;
+          line-height: 44px;
+          color: darken(white, 10%);
+
+          &:hover {
+            text-decoration: none;
+            color: white;
+          }
+
+          &:active {
+            color: darken(white, 10%);
+          }
+
+          &:focus {
+            text-decoration: none;
+          }
+        }
+
+        &.disabled {
+          border-top: 1px solid rgba(white, .15);
+          border-left: 1px solid rgba(white, .15);
+          background-color: rgba(#333333, .85);
+
+          &:active {
+            border: none;
+            background-color: rgba(darken(#333333, 5%), .85);
+          }
+
+          a {
+            color: #999999;
+
+            &:hover {
+              color: lighten(#999999, 10%);
+            }
+
+            &:active {
+              color: #999999;
+            }
+          }
+        }
+      }
+
+      div.back {
+        background-color: white;
+        transform: rotateY(180deg);
       }
     }
   }
