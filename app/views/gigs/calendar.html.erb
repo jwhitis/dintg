@@ -1,3 +1,9 @@
-<div id="calendar">
-  <%= render "calendar", calendar: @calendar %>
+<div id="calendar" class="flipper-container">
+  <div class="flipper">
+    <div class="front">
+      <%= render "calendar", calendar: @calendar %>
+    </div>
+    <div class="back">
+    </div>
+  </div>
 </div>

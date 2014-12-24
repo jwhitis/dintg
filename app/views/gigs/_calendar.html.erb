@@ -9,20 +9,12 @@
     <% Date::DAYNAMES.each do |name| %>
       <th><%= name[0] %></th>
     <% end %>
-  <tr>
+  </tr>
   <% calendar.days_in_weeks.each do |week| %>
     <tr>
       <% week.each do |day| %>
-        <td>
-          <div class="flipper-container">
-            <div class="flipper <%= "disabled" unless day[1] %>">
-              <div class="front <%= "disabled" unless day[1] %>" data-density="<%= day[2] %>">
-                <%= link_to day[0], "javascript:void(0)" %>
-              </div>
-              <div class="back">
-              </div>
-            </div>
-          </div>
+        <td class="<%= "disabled" unless day[1] %>" data-density="<%= day[2] %>">
+          <%= link_to day[0], "javascript:void(0)" %>
         </td>
       <% end %>
     </tr>
