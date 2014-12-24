@@ -13,8 +13,9 @@
   <% calendar.days_in_weeks.each do |week| %>
     <tr>
       <% week.each do |day| %>
-        <td class="<%= "disabled" unless day[1] %>" data-density="<%= day[2] %>">
-          <%= link_to day[0], "javascript:void(0)" %>
+        <td class="<%= "disabled" unless day[1] %>" data-path="<%= day[1] %>"
+          data-density="<%= day[2] %>" data-event-list='<%= day[3] %>'>
+          <%= link_to day[0], calendar_day_path(calendar, day) %>
         </td>
       <% end %>
     </tr>

@@ -17,6 +17,9 @@ $(document).on("ready page:load", function() {
   }).mouseup(function() {
     var background = dayBackground($(this), "53%");
     $(this).css("background-color", background);
+
+    var event_list = $(this).data("event-list");
+    $(".back").html(event_list);
     $(".flipper").addClass("flip");
   });
 

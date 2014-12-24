@@ -1,4 +1,6 @@
 class CalendarBuilder
+  include Rails.application.routes.url_helpers
+
   DENSITY_MAX = 5
 
   attr_reader :year, :month
@@ -13,11 +15,16 @@ class CalendarBuilder
   end
 
   def days_in_weeks
-    days = (1..days_in_month).map { |day| [day, date_string(day), event_density(day)] }
-    day_offset.times { |n| days.unshift([days_in_previous_month - n, nil]) }
+    days = (1..days_in_month).map do |day|
+      events = events_for_day(day)
+      presenter = EventPresenter.new(events)
+      [day, day_path(day), event_density(events), presenter.event_list]
+    end
+
+    day_offset.times { |n| days.unshift([days_in_previous_month - n]) }
 
     counter = 0
-    days << [counter += 1, nil] until days.size % 7 == 0
+    days << [counter += 1] until days.size % 7 == 0
 
     days.in_groups_of(7, false)
   end
@@ -37,23 +44,30 @@ class CalendarBuilder
     date.end_of_month.day
   end
 
+  def day_path(day)
+    date = date_string(day)
+    new_gig_path(date: date)
+  end
+
   def date_string(day)
     "#{@year}-#{@month}-#{day}"
   end
 
-  def event_density(day)
+  def events_for_day(day)
     day_time = Time.new(@year, @month, day)
     day_time_range = (day_time.beginning_of_day..day_time.end_of_day)
 
-    events_for_day = @events.select do |event|
+    @events.select do |event|
       event_time = event.start.date_time
       day_time_range.cover?(event_time)
     end
+  end
 
+  def event_density(events)
     # Density values range from 0.0 to 1.0. A score above 0.0 indicates that at
     # least one event is scheduled for that day. If the number of events exceeds
     # DENSITY_MAX, 1.0 will be returned.
-    density = events_for_day.size.to_f / DENSITY_MAX.to_f
+    density = events.size.to_f / DENSITY_MAX.to_f
     density > 1 ? 1 : density
   end
 

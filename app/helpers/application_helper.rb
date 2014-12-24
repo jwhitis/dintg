@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def calendar_day_path(calendar, day)
     if day[1]
-      new_gig_path(date: day[1])
+      "javascript:void(0)"
     else
       day[0] < 7 ? next_month_path(calendar) : previous_month_path(calendar)
     end
