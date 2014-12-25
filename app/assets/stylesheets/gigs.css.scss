@@ -1,4 +1,7 @@
 div#calendar {
+  position: relative;
+  z-index: 4;
+
   h3 {
     margin: 0;
     padding: 10px 15px;
@@ -25,7 +28,7 @@ div#calendar {
         left: 15px;
       }
 
-      &.next {
+      &.next, &.exit {
         right: 15px;
       }
     }
@@ -106,6 +109,77 @@ div#calendar {
       }
     }
   }
+
+  div.events-container {
+    background-color: rgba(white, .85);
+
+    div#event-list {
+      height: 189px;
+      padding: 15px 0;
+      overflow-y: scroll;
+      border-bottom: 1px solid rgba(black, .15px);
+      letter-spacing: .5px;
+      font-weight: lighter;
+
+      p.no-events {
+        margin: 0;
+        padding: 8px 15px;
+        font-size: 16px;
+        text-align: center;
+        color: white;
+        text-shadow: 0 1px 1px rgba(black, .15);
+        background-color: rgba($light-orange, .85);
+      }
+
+      ul {
+        margin: -15px 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+          padding: 8px 15px;
+          color: #666666;
+
+          &:nth-child(even) {
+            color: darken(#666666, 5%);
+            background-color: rgba(black, .05);
+          }
+        }
+      }
+    }
+
+    div.footer {
+      padding: 15px;
+      border-top: 1px solid white;
+
+      a#add-event {
+        width: 100%;
+        padding: 5px 20px;
+        display: inline-block;
+        text-align: center;
+        border-bottom: 2px solid darken($light-blue, 5%);
+        border-radius: 4px;
+        font-size: 18px;
+        letter-spacing: .5px;
+        font-weight: lighter;
+        color: darken(white, 5%);
+        background-color: $light-blue;
+        box-shadow: 0 1px 2px rgba(black, .25);
+        transition: all .2s ease;
+
+        &:hover {
+          border-bottom-color: $light-blue;
+          text-decoration: none;
+          color: white;
+          background-color: lighten($light-blue, 5%);
+        }
+
+        &:focus {
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }
 
 // BEGIN FLIP ANIMATION
@@ -141,7 +215,6 @@ div.flipper-container {
     }
 
     div.back {
-      background-color: white;
       transform: rotateY(180deg);
     }
   }

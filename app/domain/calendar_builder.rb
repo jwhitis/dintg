@@ -18,7 +18,7 @@ class CalendarBuilder
     days = (1..days_in_month).map do |day|
       events = events_for_day(day)
       presenter = EventPresenter.new(events)
-      [day, day_path(day), event_density(events), presenter.event_list]
+      [day, day_path(day), event_density(events), presenter.event_list, day_title(day)]
     end
 
     day_offset.times { |n| days.unshift([days_in_previous_month - n]) }
@@ -69,6 +69,11 @@ class CalendarBuilder
     # DENSITY_MAX, 1.0 will be returned.
     density = events.size.to_f / DENSITY_MAX.to_f
     density > 1 ? 1 : density
+  end
+
+  def day_title(day)
+    date = Date.new(@year, @month, day)
+    date.strftime("%A, %b. #{day.ordinalize}")
   end
 
   def day_offset

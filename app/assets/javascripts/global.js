@@ -18,13 +18,23 @@ $(document).on("ready page:load", function() {
     var background = dayBackground($(this), "53%");
     $(this).css("background-color", background);
 
+    // Render event list
     var event_list = $(this).data("event-list");
-    $(".back").html(event_list);
+    $("#event-list").html(event_list);
+
+    // Set "Add Event" button path
+    var path = $(this).data("path");
+    $("#add-event").attr("href", path);
+
+    // Set event list title
+    var title = $(this).data("title");
+    $("#events-title").text(title);
+
     $(".flipper").addClass("flip");
   });
 
-  // Clicking back of calendar triggers reverse flip animation
-  $("#calendar .back").click(function() {
+  // Clicking exit button triggers reverse flip animation
+  $("#calendar .exit").click(function() {
     $(".flipper").removeClass("flip");
   });
 
