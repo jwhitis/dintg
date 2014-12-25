@@ -150,10 +150,10 @@ div#calendar {
             padding: 8px 15px;
             color: white;
             text-shadow: 0 1px 1px rgba(black, .25);
-            background-color: rgba(#21C056, .85);
+            background-color: rgba($green, .85);
 
             &:nth-child(even) {
-              background-color: rgba(darken(#21C056, 5%), .85);
+              background-color: rgba(darken($green, 5%), .85);
             }
 
             div.col-xs-6 {

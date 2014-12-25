@@ -4,6 +4,15 @@ $(document).on("ready page:load", function() {
   var page_height = $(window).outerHeight();
   $("#wrapper").css("min-height", page_height);
 
+  // Flash messages fade out after 3 seconds
+  if ($("div.flash-message").length) {
+    window.setTimeout(function() {
+      $("div.flash-message").fadeOut(function() {
+        $(this).remove();
+      });
+    }, 3000);
+  }
+
   // Set background color of calendar days by event density
   $("#calendar td").not(".disabled").each(function() {
     var background = dayBackground($(this), "53%");
