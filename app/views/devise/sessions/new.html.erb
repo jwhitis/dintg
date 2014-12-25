@@ -2,6 +2,7 @@
   <div class="call-to-action">
     <h3>One Simple Question</h3>
     <h1><span class="a">a</span>m<span class="i">i</span>free</h1>
-    <%= link_to "Sign In with Google", user_omniauth_authorize_path(:google_oauth2) %>
+    <%= link_to "Sign In with Google", user_omniauth_authorize_path(:google_oauth2),
+      class: "btn-blue" %>
   </div>
 </div>
