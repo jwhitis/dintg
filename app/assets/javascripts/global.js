@@ -5,9 +5,9 @@ $(document).on("ready page:load", function() {
   $("#wrapper").css("min-height", page_height);
 
   // Flash messages fade out after 3 seconds
-  if ($("div.flash-message").length) {
+  if ($(".flash-message").length) {
     window.setTimeout(function() {
-      $("div.flash-message").fadeOut(function() {
+      $(".flash-message").fadeOut(function() {
         $(this).remove();
       });
     }, 3000);
@@ -19,7 +19,7 @@ $(document).on("ready page:load", function() {
     $(this).css("background-color", background);
   });
 
-  // Clicking calendar day triggers flip animation
+  // Clicking calendar day triggers animation
   $("#calendar td").not(".disabled").mousedown(function(event) {
     var background = dayBackground($(this), "48%");
     $(this).css("background-color", background);
@@ -42,9 +42,14 @@ $(document).on("ready page:load", function() {
     $(".flipper").addClass("flip");
   });
 
-  // Clicking exit button triggers reverse flip animation
+  // Clicking exit button triggers reverse animation
   $("#calendar .exit").click(function() {
     $(".flipper").removeClass("flip");
+  });
+
+  // Loading icon appears on calendar reload
+  $("#calendar").find(".previous, .next, .disabled a").click(function() {
+    $(".loading").show();
   });
 
   function dayBackground(element, lightness) {
