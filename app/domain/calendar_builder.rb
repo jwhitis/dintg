@@ -24,7 +24,7 @@ class CalendarBuilder
     day_offset.times { |n| days.unshift([days_in_previous_month - n]) }
 
     counter = 0
-    days << [counter += 1] until days.size % 7 == 0
+    days << [counter += 1] until days.size >= 35 && days.size % 7 == 0
 
     days.in_groups_of(7, false)
   end
