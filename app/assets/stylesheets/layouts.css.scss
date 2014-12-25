@@ -106,3 +106,15 @@ header {
     text-decoration: none;
   }
 }
+
+.header {
+  margin: 0;
+  padding: 10px 15px;
+  border-bottom: 2px solid rgba(black, .15);
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: .5px;
+  color: white;
+  text-shadow: 0 1px 1px rgba(black, .15);
+  background-color: rgba($light-blue, .85);
+}
