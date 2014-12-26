@@ -1,44 +1,7 @@
 <div id="gigs-new">
-  <h3>New Gig</h3>
+  <h3 class="header">Add Event</h3>
 
-  <%= form_for @gig do |f| %>
-    <%= render "shared/validation_errors", resource: @gig %>
-
-    <div class="form-group">
-      <%= f.label :summary, "Title", class: "sr-only" %>
-      <%= f.text_field :summary, placeholder: "Title", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :location, class: "sr-only" %>
-      <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
-    </div>
-
-    <div class="form-group pay">
-      <%= f.label :pay, class: "sr-only" %>
-      <%= f.text_field :pay, placeholder: "Pay", value: @gig.formatted_pay(""),
-        class: "form-control" %>
-    </div>
-
-    <%= f.hidden_field :date %>
-
-    <div class="form-group">
-      <%= f.label :starts_at, "Start Time" %>
-      <%= f.select(:starts_at, time_options_for_select(@gig.starts_at), {}, class: "form-control") %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :ends_at, "End Time" %>
-      <%= f.select(:ends_at, time_options_for_select(@gig.ends_at, 1), {}, class: "form-control") %>
-    </div>
-
-    <%= hidden_field_tag :double_confirmation, false %>
-
-    <div class="form-footer">
-      <%= f.submit "Save" %>
-      <%= link_to "Cancel", root_path, class: "cancel" %>
-    </div>
-  <% end %>
+  <%= render "form", gig: @gig %>
 </div>
 
 <% if @recommendation %>

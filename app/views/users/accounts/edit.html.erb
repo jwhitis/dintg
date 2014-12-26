@@ -1,7 +1,7 @@
 <div id="accounts-edit">
   <h3 class="header">Account Settings</h3>
 
-  <%= form_for @user, url: users_account_path do |f| %>
+  <%= form_for @user, url: users_account_path, html: { class: "basic-form" } do |f| %>
     <%= render "shared/validation_errors", resource: @user %>
 
     <div class="form-group row">
@@ -17,7 +17,7 @@
     </div>
 
     <%= f.fields_for :configuration do |config| %>
-      <div class="form-group">
+      <div class="form-group neg-top-margin">
         <%= config.label :calendar_id, class: "instructions" do %>
           Choose the Google calendar where new events should be added:
         <% end %>
@@ -25,16 +25,16 @@
           class: "form-control" %>
       </div>
 
-      <div class="form-group monthly-goal">
+      <div class="form-group currency neg-top-margin">
         <%= config.label :monthly_goal, class: "instructions" do %>
           Enter the amount that you want to make each <b>month</b>:
         <% end %>
         <%= fa_icon "dollar" %>
         <%= config.text_field :monthly_goal, value: config.object.formatted_monthly_goal(""),
-          placeholder: "Monthly Goal", class: "form-control" %>
+          placeholder: "0.00", class: "form-control" %>
       </div>
 
-      <div class="form-group time-period">
+      <div class="form-group time-period neg-top-margin">
         <p class="instructions">Choose how you want your progress score to be calculated:</p>
         <%= config.collection_radio_buttons :time_period, TimeRangeDictionary::TIME_PERIODS,
           :to_s, :titleize do |builder| %>

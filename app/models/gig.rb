@@ -5,11 +5,13 @@ class Gig < ActiveRecord::Base
 
   belongs_to :user
 
+  validates_presence_of :summary, message: "Please enter a title for this event."
+  validate :ends_at_must_be_after_starts_at
   validates_numericality_of :pay, greater_than: 0, less_than: 1000000,
     message: "Please enter a payment amount that is more than $0.00 and less than $1,000,000.00."
 
   def attributes_with_custom_error_message
-    [:pay]
+    [:summary, :ends_at, :pay]
   end
 
   def to_params
@@ -45,5 +47,13 @@ class Gig < ActiveRecord::Base
   def self.paid
     where(paid: true)
   end
+
+  private
+
+  def ends_at_must_be_after_starts_at
+    if self.ends_at <= self.starts_at
+      errors.add(:ends_at, "Please choose an end time that is after the start time.")
+    end
+  end 
 
 end

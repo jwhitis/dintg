@@ -56,6 +56,7 @@ class GigsController < ApplicationController
 
   def edit
     @gig = Gig.find(params[:id])
+    @gig.date = @gig.starts_at.strftime("%Y-%-m-%-d")
   end
 
   def update

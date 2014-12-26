@@ -1,0 +1,23 @@
+div#gigs-new, div#gigs-edit {
+  box-shadow: 0 0 15px rgba(black, .75);
+
+  div.times {
+    margin-top: -5px;
+    text-align: center;
+
+    select {
+      background-position: 96% 50%;
+    }
+  }
+
+  div.currency {
+    margin: 0 -15px;
+    padding: 0 15px 15px 15px;
+    border-bottom: 1px solid rgba(black, .15px);
+
+    i.fa-dollar {
+      bottom: 25px;
+      left: 28px;
+    }
+  }
+}
