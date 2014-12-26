@@ -1,10 +1,14 @@
 div#validation-errors {
+  margin: 0 -15px 15px -15px;
+  padding: 10px 15px 10px 7px;
   line-height: 16px;
-  letter-spacing: .25px;
+  letter-spacing: .5px;
   font-weight: lighter;
+  color: white;
+  text-shadow: 0 1px 1px rgba(black, .15);
+  background-color: rgba($red, .85);
 
   ul {
-    padding: 0;
-    list-style: none;
+    margin-bottom: 0;
   }
 }

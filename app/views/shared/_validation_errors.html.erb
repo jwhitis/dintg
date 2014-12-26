@@ -1,8 +1,8 @@
 <% if resource.errors.any? %>
   <div id="validation-errors">
-    <ul>
+    <ul class="fa-ul">
       <% formatted_error_messages(resource).each do |message| %>
-        <li><%= message %></li>
+        <li><%= fa_icon("li check-square") + message %></li>
       <% end %>
     </ul>
   </div>

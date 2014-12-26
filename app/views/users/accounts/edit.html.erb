@@ -4,16 +4,9 @@
   <%= form_for @user, url: users_account_path, html: { class: "basic-form" } do |f| %>
     <%= render "shared/validation_errors", resource: @user %>
 
-    <div class="form-group row">
-      <div class="col-xs-6">
-        <%= f.label :first_name, "First Name", class: "sr-only" %>
-        <%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
-      </div>
-
-      <div class="col-xs-6">
-        <%= f.label :last_name, "Last Name", class: "sr-only" %>
-        <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
-      </div>
+    <div class="form-group email">
+      <p>Your account is associated with the following email address:</p>
+      <p><%= @user.email %></p>
     </div>
 
     <%= f.fields_for :configuration do |config| %>
@@ -45,7 +38,7 @@
       <div class="checkbox">
         <%= config.label :exclude_unpaid do %>
           <%= config.check_box :exclude_unpaid %>
-          Gigs that have not been marked as <b>paid</b> do not count towards your goal
+          Only events that have been marked as <b>paid</b> count towards your goal
         <% end %>
       </div>
     <% end %>

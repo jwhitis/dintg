@@ -1,6 +1,17 @@
 div#accounts-edit {
   box-shadow: 0 0 15px rgba(black, .75);
 
+  div.email {
+    p {
+      margin: 0 5px 5px 5px;
+
+      &:last-child {
+        margin-bottom: 0;
+        font-weight: bold;
+      }
+    }
+  }
+
   div.time-period {
     label {
       margin: 5px 0 0 0;

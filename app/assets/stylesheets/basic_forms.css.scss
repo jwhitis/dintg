@@ -62,11 +62,13 @@ form.basic-form {
     margin-top: 0;
 
     input[type="checkbox"] {
-      margin: 2px 0 0 -16px;
+      width: 14px;
+      height: 14px;
+      margin: 1px 0 0 -22px;
     }
 
     label {
-      padding-left: 20px;
+      padding-left: 22px;
     }
   }
 

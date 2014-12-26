@@ -27,7 +27,7 @@
 
   <div class="form-group currency neg-top-margin">
     <%= f.label :pay, class: "instructions" do %>
-      Enter the amount that this gig pays:
+      Enter the amount that this event pays:
     <% end %>
     <%= fa_icon "dollar" %>
     <%= f.text_field :pay, value: gig.formatted_pay(""), placeholder: "0.00",
