@@ -15,12 +15,12 @@
 
   <div class="form-group row times">
     <div class="col-xs-6">
-      <%= f.label :starts_at, "Start Time" %>
+      <%= f.label :starts_at, "Start Time:" %>
       <%= f.select(:starts_at, time_options_for_select(gig.starts_at), {}, class: "form-control") %>
     </div>
 
     <div class="col-xs-6">
-      <%= f.label :ends_at, "End Time" %>
+      <%= f.label :ends_at, "End Time:" %>
       <%= f.select(:ends_at, time_options_for_select(gig.ends_at, 1), {}, class: "form-control") %>
     </div>
   </div>

@@ -37,7 +37,7 @@ form.basic-form {
 
   select {
     -webkit-appearance: none;
-    background-image: url(select_arrows.png);
+    background: url(tp_select_arrows.png), linear-gradient(to bottom, #FFFFFF 0%, #EEEEEE 100%);
     background-position: 98% 50%;
     background-repeat: no-repeat;
     box-shadow: none;
