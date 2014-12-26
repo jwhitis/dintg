@@ -14,8 +14,6 @@ class GigsController < ApplicationController
       params[:month] || current_time.month,
       current_user
     )
-
-    respond_to :html, :js
   end
 
   def new
