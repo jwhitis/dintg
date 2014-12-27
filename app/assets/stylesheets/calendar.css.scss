@@ -142,52 +142,21 @@ div#calendar {
     div.events-container {
       background-color: rgba(white, .85);
 
-      div#event-list {
+      div#events {
         min-height: 188px;
         padding: 15px 0;
         border-bottom: 1px solid rgba(black, .15px);
-        letter-spacing: .5px;
-        font-weight: lighter;
 
         p.no-events {
           margin: 0;
           padding: 8px 15px;
-          font-size: 16px;
           text-align: center;
+          font-size: 16px;
+          letter-spacing: .5px;
+          font-weight: lighter;
           color: white;
           text-shadow: 0 1px 1px rgba(black, .15);
           background-color: rgba($light-orange, .85);
-        }
-
-        ul {
-          margin: 0;
-          padding: 0;
-          list-style: none;
-
-          li {
-            padding: 8px 15px;
-            color: white;
-            text-shadow: 0 1px 1px rgba(black, .25);
-            background-color: rgba($green, .85);
-
-            &:nth-child(even) {
-              background-color: rgba(darken($green, 5%), .85);
-            }
-
-            div.col-xs-6 {
-              &:first-child {
-                padding: 0 5px 0 10px;
-              }
-
-              &:last-child {
-                padding: 0 10px 0 5px;
-              }
-            }
-
-            i.fa-calendar-o {
-              margin-right: 10px;
-            }
-          }
         }
       }
 

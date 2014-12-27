@@ -29,7 +29,11 @@ $(document).on("ready page:load", function() {
 
     // Render event list
     var event_list = $(this).data("event-list");
-    $("#event-list").html(event_list);
+    if (event_list) {
+      $("#events").html(event_list);
+    } else {
+      $("#events").html("<p class='no-events'>You're wide open this day.</p>");
+    }
 
     // Set "Add Event" button path
     var path = $(this).data("path");
