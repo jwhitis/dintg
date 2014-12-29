@@ -1,25 +1,40 @@
 <div id="create-gig-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
-        <p>
-          Your account is set up to track your progress by
-          <%= link_to current_user.configuration.time_period, edit_users_account_path %>.
-        </p>
+      <h3 class="header"><%= gig.summary %></h3>
 
+      <div class="modal-body">
         <% if conflicts.present? %>
-          <%= render "conflicts", conflicts: @conflicts %>
-        <% else %>
-          <p>Good news, you don't have any schedule conflicts.</p>
+          <div id="conflicts">
+            <p>
+              <%= fa_icon("exclamation-triangle") %>
+              You have the following conflicts:
+            </p>
+
+            <% event_presenter = EventPresenter.new(conflicts) %>
+            <%= event_presenter.event_list %>
+          </div>
         <% end %>
 
-        <% presenter = RecommendationPresenter.new(recommendation) %>
-        <%= presenter.recommendation_html %>
+        <% recommendation_presenter = RecommendationPresenter.new(recommendation) %>
+        <%= recommendation_presenter.recommendation %>
 
-        <p>Would you like to take the gig?</p>
+        <div class="buttons clearfix">
+          <div class="col-left">
+            <button type="button" class="btn-blue" id="confirm-button">Take the gig!</button>
+          </div>
 
-        <button type="button" class="btn btn-primary" id="confirm-button">Yes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+          <div class="col-right">
+            <%= link_to "No, thanks.", "javasript:void(0)", data: { dismiss: "modal" } %>
+          </div>
+        </div>
+
+        <% unless gig.in_past? %>
+          <p class="footnote">
+            <sup>1</sup>Your account is set up to track your progress by
+            <%= link_to current_user.configuration.time_period, edit_users_account_path %>.
+          </p>
+        <% end %>
       </div>
     </div>
   </div>

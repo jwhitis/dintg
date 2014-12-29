@@ -5,7 +5,7 @@
 </div>
 
 <% if @recommendation %>
-  <%= render "create_gig_modal", recommendation: @recommendation, conflicts: @conflicts %>
+  <%= render "create_gig_modal", gig: @gig, recommendation: @recommendation, conflicts: @conflicts %>
 
   <script type="text/javascript">
     $("#create-gig-modal").modal("show");
@@ -13,7 +13,7 @@
     $("#confirm-button").click(function() {
       $("#create-gig-modal").modal("hide");
       $("#double_confirmation").val(true);
-      $(".new_gig").submit();
+      $("#gigs-new form").submit();
     });
   </script>
 <% end %>

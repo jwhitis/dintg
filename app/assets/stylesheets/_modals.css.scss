@@ -1,0 +1,26 @@
+div.modal {
+  div.modal-backdrop.in {
+    opacity: 0;
+  }
+
+  div.modal-dialog {
+    margin: 65px 15px 0 15px;
+
+    div.modal-content {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      box-shadow: 0 0 15px rgba(black, .75);
+
+      div.modal-body {
+        background-color: darken(white, 5%);
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    div.modal-dialog {
+      margin: 65px auto 0 auto;
+    }
+  }
+}

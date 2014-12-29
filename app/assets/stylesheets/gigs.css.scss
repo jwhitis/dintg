@@ -21,3 +21,95 @@ div#gigs-new, div#gigs-edit {
     }
   }
 }
+
+div#create-gig-modal {
+  h3.header {
+    background-color: $light-blue;
+  }
+
+  div#conflicts {
+    margin-bottom: 10px;
+
+    p {
+      margin: 0 -15px 10px -15px;
+      padding: 10px 15px;
+      line-height: 16px;
+      letter-spacing: .5px;
+      font-weight: lighter;
+      color: white;
+      text-shadow: 0 1px 1px rgba(black, .15);
+      background-color: rgba($red, .85);
+
+      i.fa-exclamation-triangle {
+        margin: 0 2px;
+        position: relative;
+        top: 1px;
+        font-size: 16px;
+      }
+    }
+
+    ul {
+      margin: 0 -15px;
+
+      li {
+        background-color: rgba($light-orange, .85);
+
+        &:nth-child(even) {
+          background-color: rgba(darken($light-orange, 5%), .85);
+        }
+      }
+    }
+  }
+
+  div.recommendation {
+    margin-bottom: 20px;
+  }
+
+  div.buttons {
+    margin-bottom: 5px;
+
+    div.col-left {
+      width: 50%;
+      float: left;
+
+      button {
+        width: 100%;
+        padding: 5px 10px;
+      }
+    }
+
+    div.col-right {
+      width: 50%;
+      float: right;
+      text-align: center;
+
+      a {
+        position: relative;
+        top: 7px;
+        font-size: 16px;
+        letter-spacing: .5px;
+        font-weight: lighter;
+        text-decoration: underline;
+        color: #333333;
+      }
+    }
+  }
+
+  p.footnote {
+    margin: 20px 0 5px 0;
+    padding-left: 10px;
+    line-height: 16px;
+    letter-spacing: .5px;
+    font-weight: lighter;
+    color: #666666;
+
+    sup {
+      margin: 0 3px 0 -10px;
+    }
+
+    a {
+      text-decoration: underline;
+      color: #333333;
+    }
+  }
+}

@@ -27,8 +27,6 @@ class ProgressCalculator
     earned_for_period.to_f / goal_for_period.to_f
   end
 
-  private
-
   def earned_for_period
     time_range = @dictionary.time_range_for_period
 
@@ -48,6 +46,8 @@ class ProgressCalculator
   def fraction_of_period_elapsed
     current_day_in_period.to_f / days_in_period.to_f
   end
+
+  private
 
   def current_day_in_period
     month_range = @dictionary.month_range_for_period
