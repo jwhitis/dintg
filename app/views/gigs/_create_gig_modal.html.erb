@@ -30,10 +30,12 @@
         </div>
 
         <% unless gig.in_past? %>
-          <p class="footnote">
-            <sup>1</sup>Your account is set up to track your progress by
-            <%= link_to current_user.configuration.time_period, edit_users_account_path %>.
-          </p>
+          <div class="footer">
+            <p class="footnote">
+              <sup>1</sup>Your account is set up to track your progress by
+              <%= link_to current_user.configuration.time_period, edit_users_account_path %>.
+            </p>
+          </div>
         <% end %>
       </div>
     </div>

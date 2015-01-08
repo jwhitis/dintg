@@ -95,21 +95,27 @@ div#create-gig-modal {
     }
   }
 
-  p.footnote {
-    margin: 20px 0 5px 0;
-    padding-left: 10px;
-    line-height: 16px;
-    letter-spacing: .5px;
-    font-weight: lighter;
-    color: #666666;
+  div.footer {
+    margin: 20px -15px -15px -15px;
+    border-top: 1px solid rgba(black, .15px);
 
-    sup {
-      margin: 0 3px 0 -10px;
-    }
+    p.footnote {
+      margin: 0;
+      padding: 10px 15px 10px 25px;
+      border-top: 1px solid white;
+      line-height: 16px;
+      letter-spacing: .5px;
+      font-weight: lighter;
+      color: #666666;
 
-    a {
-      text-decoration: underline;
-      color: #333333;
+      sup {
+        margin: 0 3px 0 -10px;
+      }
+
+      a {
+        text-decoration: underline;
+        color: #333333;
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ class RecommendationPresenter
 
   def recommendation
     if @recommendation.gig.in_past?
-      html = helpers.content_tag(:p, gig_in_past_text, class: "gig-in-past")
+      html = gig_in_past
     else
       html = timeline
       html += synopsis
@@ -20,9 +20,25 @@ class RecommendationPresenter
 
   private
 
+  def gig_in_past
+    helpers.content_tag(:div, class: "gig-in-past info-box clearfix") do
+      helpers.content_tag(:div, class: "col-left") do
+        helpers.content_tag(:div, class: "circle") do
+          helpers.content_tag(:span, class: "fa-stack") do
+            helpers.content_tag(:i, "", class: "fa fa-calendar-o fa-stack-2x") +
+            helpers.content_tag(:i, "", class: "fa fa-check fa-stack-1x")
+          end
+        end
+      end +
+      helpers.content_tag(:div, class: "col-right") do
+        helpers.content_tag(:p, gig_in_past_text)
+      end
+    end
+  end
+
   def gig_in_past_text
-    "It looks like this gig has already happened. Feel free to add it anyway if you'd
-      like to update your records.".squish.html_safe
+    "It looks like this gig already happened, but you can add it anyway to update your
+      records.".squish.html_safe
   end
 
   def timeline
@@ -186,7 +202,7 @@ class RecommendationPresenter
       text = ahead_of_schedule_text
     end
 
-    helpers.content_tag(:div, class: "conclusion clearfix") do
+    helpers.content_tag(:div, class: "conclusion info-box clearfix") do
       helpers.content_tag(:div, class: "col-left") do
         helpers.content_tag(:div, class: "circle") do
           helpers.content_tag(:i, "", class: "fa fa-lightbulb-o")

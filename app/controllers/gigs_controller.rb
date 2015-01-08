@@ -32,7 +32,7 @@ class GigsController < ApplicationController
 
       unless params[:double_confirmation] == "true"
         @recommendation = Recommendation.new(current_user, @gig)
-        @conflicts = google_facade.find_conflicts(@gig)
+        @conflicts = google_facade.find_conflicts(@gig) unless @gig.in_past?
         render :new and return
       end
 
@@ -64,7 +64,7 @@ class GigsController < ApplicationController
     if @gig.valid?
       google_facade = GoogleAPIFacade.new(current_user)
 
-      unless params[:double_confirmation] == "true"
+      unless params[:double_confirmation] == "true" || @gig.in_past?
         @conflicts = google_facade.find_conflicts(@gig)
 
         if @conflicts.any?

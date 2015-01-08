@@ -3,6 +3,56 @@ div.recommendation {
   font-weight: lighter;
   color: #666666;
 
+  div.info-box {
+    padding: 10px 10px 11px 10px;
+    border: 3px solid rgba(black, .15);
+    color: white;
+    background-color: #48C6F4;
+
+    div.col-left {
+      width: 25%;
+      float: left;
+
+      div.circle {
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        border-radius: 50%;
+        border: 3px solid white;
+        background-color: lighten($yellow, 5%);
+        box-shadow: 0 2px 5px rgba(black, .25);
+      }
+    }
+
+    div.col-right {
+      width: 75%;
+      float: right;
+
+      p {
+        margin: 0;
+        line-height: 16px;
+        text-shadow: 0 1px 1px rgba(black, .15);
+      }
+    }
+  }
+
+  div.gig-in-past {
+    margin-top: 5px;
+
+    div.circle {
+      position: relative;
+      top: 8px;
+
+      span.fa-stack {
+        top: 7px;
+
+        i.fa-check {
+          top: 3px;
+        }
+      }
+    }
+  }
+
   div.timeline {
     margin-bottom: 15px;
     padding-top: 21px;
@@ -113,48 +163,16 @@ div.recommendation {
 
   div.conclusion {
     margin-top: 15px;
-    padding: 5px 10px 6px 10px;
-    border: 3px solid rgba(black, .25);
-    background-color: #666666;
 
-    div.col-left {
-      width: 24%;
-      float: left;
-
-      div.circle {
-        width: 45px;
-        height: 45px;
-        display: inline-block;
-        text-align: center;
-        border-radius: 50%;
-        border: 3px solid white;
-        background-color: $yellow;
-        box-shadow: 0 2px 5px rgba(black, .25);
-
-        i.fa-lightbulb-o {
-          position: relative;
-          left: 1px;
-          font-size: 40px;
-          color: white;
-        }
-      }
+    i.fa-lightbulb-o {
+      position: relative;
+      top: 2px;
+      font-size: 40px;
     }
 
-    div.col-right {
-      width: 76%;
-      float: right;
-
-      p {
-        margin: 0;
-        line-height: 16px;
-        color: darken(white, 5%);
-        text-shadow: 0 1px 1px rgba(black, .15);
-
-        &.push {
-          position: relative;
-          top: 7px;
-        }
-      }
+    p.push {
+      position: relative;
+      top: 8px;
     }
   }
 }
