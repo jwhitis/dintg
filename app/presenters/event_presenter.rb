@@ -7,17 +7,21 @@ class EventPresenter
   def event_list
     return nil if @events.empty?
 
-    html = @events.reduce("") { |html, event| html + event_html(event) }
-    helpers.content_tag(:ul, html, { class: "event-list" }, false)
+    html = ""
+    @events.each_with_index do |event, index|
+      html += event_html(event, index + 1)
+    end
+
+    helpers.content_tag(:ol, html, { class: "event-list" }, false)
   end
 
   private
 
-  def event_html(event)
+  def event_html(event, number)
     helpers.content_tag(:li) do
       helpers.content_tag(:div, class: "row") do
         helpers.content_tag(:div, class: "col-xs-6") do
-          helpers.content_tag(:i, "", class: "fa fa-calendar-o") + event.summary
+          helpers.content_tag(:span, "#{number}.", class: "number") + event.summary
         end +
         helpers.content_tag(:div, format_event_time(event), class: "col-xs-6")
       end

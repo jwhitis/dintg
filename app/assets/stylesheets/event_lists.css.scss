@@ -1,4 +1,4 @@
-ul.event-list {
+ol.event-list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -9,15 +9,15 @@ ul.event-list {
     font-weight: lighter;
     color: white;
     text-shadow: 0 1px 1px rgba(black, .15);
-    background-color: rgba($green, .85);
+    background-color: rgba($light-orange, .85);
 
     &:nth-child(even) {
-      background-color: rgba(darken($green, 5%), .85);
+      background-color: rgba(darken($light-orange, 5%), .85);
     }
 
     div.col-xs-6 {
       &:first-child {
-        padding: 0 5px 0 10px;
+        padding: 0 5px 0 25px;
       }
 
       &:last-child {
@@ -25,8 +25,8 @@ ul.event-list {
       }
     }
 
-    i.fa-calendar-o {
-      margin-right: 10px;
+    span.number {
+      margin: 0 3px 0 -15px;
     }
   }
 }
