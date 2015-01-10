@@ -18,6 +18,10 @@ div#calendar {
     }
   }
 
+  div.flipper-container, div.flipper, div.front, div.back {
+    min-height: 300px;
+  }
+
   div.front {
     box-shadow: 0 0 15px rgba(black, .75);
 
@@ -172,41 +176,3 @@ div#calendar {
     }
   }
 }
-
-// BEGIN FLIP ANIMATION
-div.flipper-container, div.flipper, div.front, div.back {
-  width: 100%;
-  min-height: 300px;
-}
-
-div.flipper-container {
-  perspective: 1000;
-
-  div.flipper {
-    position: relative;
-    transition: .5s; // Flip speed
-    transform-style: preserve-3d;
-
-    // Flip pane when "flip" class is added
-    &.flip {
-      transform: rotateY(180deg);
-    }
-
-    div.front, div.back {
-      backface-visibility: hidden; // Hide back of pane
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    div.front {
-      z-index: 9999;
-      transform: rotateY(0deg); // For Firefox 31
-    }
-
-    div.back {
-      transform: rotateY(180deg);
-    }
-  }
-}
-// END FLIP ANIMATION

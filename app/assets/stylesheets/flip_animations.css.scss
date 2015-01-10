@@ -1,0 +1,48 @@
+div.flipper-container, div.flipper, div.front, div.back {
+  width: 100%;
+  // You must add a min-height property to these elements
+  // for the flip animation to work reliably
+}
+
+div.flipper-container {
+  perspective: 1000;
+
+  div.flipper {
+    position: relative;
+    transition: .5s; // Flip speed
+    transform-style: preserve-3d;
+
+    // Flip pane when "flip" class is added
+    &.flip {
+      transform: rotateY(180deg);
+    }
+
+    div.front, div.back {
+      backface-visibility: hidden; // Hide back of pane
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    div.front {
+      z-index: 9999;
+      transform: rotateY(0deg); // For Firefox 31
+    }
+
+    div.back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.vertical {
+    div.flipper {
+      &.flip {
+        transform: rotateX(-180deg);
+      }
+
+      div.back {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+}
