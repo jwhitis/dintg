@@ -21,7 +21,7 @@ class EventPresenter
     helpers.content_tag(:li) do
       helpers.content_tag(:div, class: "row") do
         helpers.content_tag(:div, class: "col-xs-6") do
-          helpers.content_tag(:span, "#{number}.", class: "number") + event.summary
+          "#{number}. #{helpers.truncate(event.summary, length: 18)}"
         end +
         helpers.content_tag(:div, format_event_time(event), class: "col-xs-6")
       end
@@ -29,7 +29,7 @@ class EventPresenter
   end
 
   def format_event_time(event)
-    "#{event.start.date_time.strftime("%l:%M%P")} - #{event.end.date_time.strftime("%l:%M%P")}"
+    "#{event.start.date_time.strftime("%l:%M%P")} - #{event.end.date_time.strftime("%l:%M%P")}".squish
   end
 
   def helpers

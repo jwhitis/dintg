@@ -56,6 +56,11 @@ $(document).on("ready page:load", function() {
     $(".loading").show();
   });
 
+  // Clicking toggle in gig list flips gig
+  $(".gig-list .flip-toggle").click(function() {
+    $(this).parents(".flipper").toggleClass("flip");
+  });
+
   function dayBackground(element, lightness) {
     var hue = 33;
     var density = +element.data("density");

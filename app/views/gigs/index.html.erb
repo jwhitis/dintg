@@ -1,3 +1,15 @@
+<div id="gigs">
+  <h3 class="header">Events</h3>
+
+  <div class="body">
+    <ol class="gig-list">
+      <% @gigs.each_with_index do |gig, index| %>
+        <%= render gig, number: index + 1  %>
+      <% end %>
+    </ol>
+  </div>
+</div>
+
 <%= link_to "Add Gig", new_gig_path, class: "btn btn-default" %>
 
 <h3>Gigs</h3>
@@ -13,7 +25,6 @@
         <th>Summary</th>
         <th>Location</th>
         <th>Pay</th>
-        <th>Date</th>
         <th>Time</th>
         <th></th>
         <th></th>
@@ -25,8 +36,7 @@
           <td><%= gig.summary %></td>
           <td><%= gig.location %></td>
           <td><%= gig.formatted_pay %></td>
-          <td><%= gig.formatted_date %></td>
-          <td><%= gig.formatted_time %></td>
+          <td><%== format_gig_time(gig) %></td>
           <td><%= link_to "Edit", edit_gig_path(gig) %></td>
           <td><%= link_to "Delete", gig, method: :delete, data: { confirm: "Are you sure you want to delete this gig?" } %></td>
         </tr>

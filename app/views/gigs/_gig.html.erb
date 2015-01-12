@@ -1,0 +1,35 @@
+<li>
+  <div class="flipper-container vertical">
+    <div class="flipper">
+      <div class="front">
+        <div class="row">
+          <div class="col-xs-6">
+            <%= "#{number}. #{truncate(gig.summary, length: 18)}" %>
+          </div>
+          <div class="col-xs-6 time">
+            <%== format_gig_time(gig) %>
+          </div>
+          <div class="flip-toggle">
+            <%= fa_icon("caret-right") %>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <div class="row">
+          <div class="flip-toggle">
+            <%= fa_icon("caret-left") %>
+          </div>
+          <div class="col-xs-6 location">
+            <%= truncate(gig.location, length: 18) %>
+          </div>
+          <div class="col-xs-4">
+            <%= gig.formatted_pay %>
+          </div>
+          <div class="col-xs-2">
+            <%= link_to "Edit", edit_gig_path(gig), class: "edit" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

@@ -56,7 +56,11 @@ module ApplicationHelper
   end
 
   def format_event_time(event)
-    "#{event.start.dateTime.strftime("%l:%M%P")} - #{event.end.dateTime.strftime("%l:%M%P")}"
+    "#{event.start.date_time.strftime("%l:%M%P")} - #{event.end.date_time.strftime("%l:%M%P")}".squish
+  end
+
+  def format_gig_time(gig)
+    "#{gig.starts_at.strftime("%l:%M%P")} - #{gig.ends_at.strftime("%l:%M%P")}".squish
   end
 
   def formatted_error_messages(resource)

@@ -28,14 +28,6 @@ class Gig < ActiveRecord::Base
     number_to_currency(self.pay, unit: unit)
   end
 
-  def formatted_date
-    self.starts_at.strftime("%-m/%-d/%y")
-  end
-
-  def formatted_time
-    "#{self.starts_at.strftime("%l:%M%P")} - #{self.ends_at.strftime("%l:%M%P")}"
-  end
-
   def in_past?
     self.starts_at < Time.now
   end
