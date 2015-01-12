@@ -38,6 +38,6 @@
 
   <div class="form-footer">
     <%= f.submit "Save", class: "btn-blue" %>
-    <%= link_to "Cancel", root_path, class: "cancel" %>
+    <%= link_to "Cancel", gig.new_record? ? calendar_gigs_path : gigs_path, class: "cancel" %>
   </div>
 <% end %>

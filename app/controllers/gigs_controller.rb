@@ -42,7 +42,7 @@ class GigsController < ApplicationController
         @gig.google_id = event.id
         @gig.save
         flash[:notice] = "The gig has been added to your Google calendar."
-        redirect_to root_path
+        redirect_to calendar_gigs_path
       else
         flash[:alert] = "Sorry, something went wrong. Please try again."
         render :new
@@ -77,7 +77,7 @@ class GigsController < ApplicationController
       if event.status == "confirmed"
         @gig.update_attributes(gig_params)
         flash[:notice] = "The gig has been updated on your Google calendar."
-        redirect_to root_path
+        redirect_to gigs_path
       else
         flash[:alert] = "Sorry, something went wrong. Please try again."
         render :edit
@@ -95,10 +95,10 @@ class GigsController < ApplicationController
     if google_facade.destroy_event(@gig.google_id)
       @gig.destroy
       flash[:notice] = "The gig has been removed from your Google calendar."
-      redirect_to root_path
+      redirect_to gigs_path
     else
       flash[:alert] = "Sorry, something went wrong. Please try again."
-      redirect_to gigs_path
+      render :edit
     end
   end
 
