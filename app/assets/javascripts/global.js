@@ -14,8 +14,10 @@ $(document).on("ready page:load", function() {
   }
 
   // Clicking item in gig list flips item
-  $(".gig-list li").click(function() {
-    $(this).find(".flipper").toggleClass("flip");
+  $(".gig-list li").click(function(event) {
+    if (event.target.tagName != "A") {
+      $(this).find(".flipper").toggleClass("flip");
+    }
   });
 
 });

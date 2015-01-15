@@ -60,7 +60,9 @@ module ApplicationHelper
   end
 
   def format_gig_time(gig)
-    "#{gig.starts_at.strftime("%l:%M%P")} - #{gig.ends_at.strftime("%l:%M%P")}".squish
+    content_tag(:span, gig.starts_at.strftime("%l:%M %p"), class: "start-time") +
+    tag(:br) +
+    content_tag(:span, gig.ends_at.strftime("%l:%M %p"), class: "end-time")
   end
 
   def formatted_error_messages(resource)

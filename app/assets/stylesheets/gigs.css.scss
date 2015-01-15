@@ -17,45 +17,59 @@ div#gigs {
         text-shadow: 0 1px 1px rgba(black, .15);
 
         div.flipper-container, div.flipper, div.front, div.back {
-          min-height: 36px;
+          min-height: 44px;
         }
 
         div[class*="col"] {
-          padding: 0;
+          padding: 8px 10px;
 
           &:first-child {
-            padding-left: 10px;
-          }
+            position: relative;
+            border-right: 1px solid white;
 
-          &:last-child {
-            padding-right: 10px;
+            i.fa-circle {
+              position: absolute;
+              top: 18px;
+              right: -5px;
+              font-size: 8px;
+              text-shadow: none;
+            }
           }
         }
 
-        div.flip-toggle {
+        div.arrow {
           width: 15px;
           height: 100%;
           position: absolute;
           top: 0;
           z-index: 9999;
-          background-color: rgba(black, .25);
+          background-color: rgba(black, .15);
           cursor: pointer;
 
           i.fa {
             position: absolute;
-            top: 11px;
+            top: 15px;
           }
         }
 
         div.front {
-          padding: 8px 15px;
-          background-color: rgba($light-orange, .85);
+          padding: 0 15px;
+          line-height: 14px;
+          background-color: lighten($light-orange, 5%);
 
-          div.time {
+          div[class*="col"]:last-child {
             padding-right: 15px;
           }
 
-          div.flip-toggle {
+          div.time {
+            font-size: 12px;
+          }
+
+          div.location {
+            font-size: 10px;
+          }
+
+          div.arrow {
             right: 0;
 
             i.fa-caret-right {
@@ -65,10 +79,11 @@ div#gigs {
         }
 
         div.back {
-          padding: 8px 15px;
-          background-color: rgba($orange, .85);
+          padding: 0 15px;
+          line-height: 28px;
+          background-color: $green;
 
-          div.flip-toggle {
+          div.arrow {
             left: 0;
 
             i.fa-caret-left {
@@ -76,34 +91,77 @@ div#gigs {
             }
           }
 
-          div.location {
+          div[class*="col"]:first-child {
             padding-left: 20px;
           }
 
-          a.edit {
-            padding: 0 5px;
-            float: right;
-            border: 1px solid white;
-            font-size: 12px;
-            line-height: 18px;
-            text-transform: uppercase;
-            color: white;
-            background-color: rgba(black, .25);
-            box-shadow: 0 2px 5px rgba(black, .25);
+          div.buttons {
+            padding: 0 0 0 25px;
 
-            &:hover {
-              text-decoration: none;
+            a {
+              width: 50%;
+              padding: 8px 15px;
+              float: right;
+              text-align: center;
+              font-size: 16px;
+              font-weight: normal;
+              text-transform: uppercase;
+              color: darken(white, 5%);
+              transition: all .2s ease;
+
+              &:hover {
+                text-decoration: none;
+                color: white;
+              }
+
+              &.edit {
+                background-color: $light-blue;
+
+                &:hover {
+                  background-color: lighten($light-blue, 5%);
+                }
+              }
+
+              &.delete {
+                background-color: darken($red, 5%);
+
+                &:hover {
+                  background-color: $red;
+                }
+              }
             }
           }
         }
 
         &:nth-child(even) {
           div.front {
-            background-color: rgba(darken($light-orange, 5%), .85);
+            background-color: $light-orange;
           }
 
           div.back {
-            background-color: rgba(darken($orange, 5%), .85);
+            background-color: darken($green, 5%);
+
+            div.buttons {
+              a {
+                color: darken(white, 10%);
+
+                &.edit {
+                  background-color: darken($light-blue, 5%);
+
+                  &:hover {
+                    background-color: $light-blue;
+                  }
+                }
+
+                &.delete {
+                  background-color: darken($red, 10%);
+
+                  &:hover {
+                    background-color: darken($red, 5%);
+                  }
+                }
+              }
+            }
           }
         }
       }
