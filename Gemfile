@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'google-api-client', require: 'google/api_client'
+gem 'jquery-easing-rails'
 gem 'omniauth-google-oauth2'
 gem 'pry-rails', group: :development
 
