@@ -1,6 +1,8 @@
-<div id="gigs-edit">
-  <h3 class="header">Edit Event</h3>
+<% content_for :page_title do %>
+  Edit Event
+<% end %>
 
+<div id="gigs-edit">
   <%= render "form", gig: @gig %>
 </div>
 

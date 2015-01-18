@@ -1,6 +1,8 @@
-<div id="gigs">
-  <h3 class="header">Events</h3>
+<% content_for :page_title do %>
+  Events
+<% end %>
 
+<div id="gigs">
   <div class="body">
     <ol class="gig-list">
       <%= render @gigs %>

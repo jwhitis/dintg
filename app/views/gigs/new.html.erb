@@ -1,6 +1,8 @@
-<div id="gigs-new">
-  <h3 class="header">Add Event</h3>
+<% content_for :page_title do %>
+  Add Event
+<% end %>
 
+<div id="gigs-new">
   <%= render "form", gig: @gig %>
 </div>
 

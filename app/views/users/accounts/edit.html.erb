@@ -1,6 +1,8 @@
-<div id="accounts-edit">
-  <h3 class="header">Account Settings</h3>
+<% content_for :page_title do %>
+  Settings
+<% end %>
 
+<div id="accounts-edit">
   <%= form_for @user, url: users_account_path, html: { class: "basic-form" } do |f| %>
     <%= render "shared/validation_errors", resource: @user %>
 

@@ -10,19 +10,18 @@
 <body>
   <div id="overlay"></div>
   <div id="wrapper">
-    <header>
-      <div class="container">
-        <% if user_signed_in? %>
-          <%= link_to "Log Out", destroy_user_session_path, class: "pull-right" %>
-        <% else %>
-          <%= link_to "Log In", user_omniauth_authorize_path(:google_oauth2), class: "pull-right" %>
-        <% end %>
-      </div>
-    </header>
-
     <%= render "layouts/flash_messages" %>
 
-    <%= yield %>
+    <%= render "layouts/nav" %>
+
+    <div class="container">
+      <h1 class="header page-title <%= "calendar" if params[:action] == "calendar" %>">
+        <%= yield :page_title %>
+        <%= fa_icon("bars", class: "nav-toggle") %>
+      </h1>
+
+      <%= yield %>
+    </div>
   </div>
 </body>
 </html>
