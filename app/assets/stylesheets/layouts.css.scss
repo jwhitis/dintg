@@ -152,7 +152,7 @@ h1.page-title {
   background-color: rgba($light-blue, .85);
 }
 
-.btn-basic {
+%btn-base {
   padding: 5px 20px;
   display: inline-block;
   border-width: 0 0 2px 0;
@@ -180,34 +180,12 @@ h1.page-title {
 }
 
 .btn-blue {
-  @extend .btn-basic;
+  @extend %btn-base;
   border-bottom-color: darken($light-blue, 5%);
   background-color: $light-blue;
 
   &:hover {
     border-bottom-color: $light-blue;
     background-color: lighten($light-blue, 5%);
-  }
-}
-
-.btn-green {
-  @extend .btn-basic;
-  border-bottom-color: darken($green, 5%);
-  background-color: $green;
-
-  &:hover {
-    border-bottom-color: $green;
-    background-color: lighten($green, 5%);
-  }
-}
-
-.btn-red {
-  @extend .btn-basic;
-  border-bottom-color: darken($red, 5%);
-  background-color: $red;
-
-  &:hover {
-    border-bottom-color: $red;
-    background-color: lighten($red, 5%);
   }
 }
