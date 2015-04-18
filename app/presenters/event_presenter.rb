@@ -12,19 +12,17 @@ class EventPresenter
       html += event_html(event, index + 1)
     end
 
-    helpers.content_tag(:ol, html, { class: "event-list" }, false)
+    helpers.content_tag(:div, html, { class: "event-list" }, false)
   end
 
   private
 
   def event_html(event, number)
-    helpers.content_tag(:li) do
-      helpers.content_tag(:div, class: "row") do
-        helpers.content_tag(:div, class: "col-xs-6") do
-          "#{number}. #{helpers.truncate(event.summary, length: 18)}"
-        end +
-        helpers.content_tag(:div, format_event_time(event), class: "col-xs-6")
-      end
+    helpers.content_tag(:div, class: "row") do
+      helpers.content_tag(:div, class: "col-xs-6") do
+        "#{number}. #{helpers.truncate(event.summary, length: 18)}"
+      end +
+      helpers.content_tag(:div, format_event_time(event), class: "col-xs-6")
     end
   end
 

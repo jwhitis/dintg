@@ -220,10 +220,10 @@ div#create-gig-modal {
       }
     }
 
-    ol.event-list {
+    div.event-list {
       margin: 0 -15px;
 
-      li {
+      div.row {
         background-color: rgba($light-orange, .85);
 
         &:nth-child(even) {
