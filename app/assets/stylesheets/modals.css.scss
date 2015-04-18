@@ -1,10 +1,10 @@
 div.modal {
   div.modal-backdrop.in {
-    opacity: 0;
+    opacity: .75;
   }
 
   div.modal-dialog {
-    margin: 65px 15px 0 15px;
+    margin-top: 56px;
 
     div.modal-content {
       border: none;
@@ -18,9 +18,12 @@ div.modal {
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 376px) {
     div.modal-dialog {
-      margin: 65px auto 0 auto;
+      width: 355px;
+      margin-top: 117px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 }
