@@ -15,9 +15,9 @@
     <%= render "layouts/nav" %>
 
     <div class="container">
-      <h1 class="header page-title <%= "calendar" if params[:action] == "calendar" %>">
+      <h1 class="header page-title <%= "hidden-desktop" unless page_needs_desktop_title? %>">
         <%= yield :page_title %>
-        <%= fa_icon("bars", class: "nav-toggle") %>
+        <%= fa_icon("bars", class: "nav-toggle hidden-desktop") %>
       </h1>
 
       <%= yield %>

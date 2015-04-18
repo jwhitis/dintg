@@ -65,6 +65,10 @@ module ApplicationHelper
     content_tag(:span, gig.ends_at.strftime("%l:%M %p"), class: "end-time")
   end
 
+  def page_needs_desktop_title?
+    controller_path != "devise/sessions" && action_name != "calendar"
+  end
+
   def formatted_error_messages(resource)
     resource.errors.map do |attribute, message|
       custom_attributes = resource.try(:attributes_with_custom_error_message)

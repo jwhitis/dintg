@@ -58,10 +58,11 @@ nav {
       color: white;
     }
 
-    &.home {
+    &.brand {
       display: none;
       float: left;
-      font-size: 24px;
+      font-size: 20px;
+      text-transform: none;
     }
   }
 
@@ -88,7 +89,7 @@ nav {
     border-bottom: 2px solid rgba(black, .1);
     display: block !important;
 
-    a.home {
+    a.brand {
       display: block;
     }
 
@@ -114,11 +115,6 @@ nav {
 h1.page-title {
   position: relative;
 
-  span.brand {
-    font-family: "Courgette";
-    letter-spacing: 1px;
-  }
-
   i.nav-toggle {
     position: absolute;
     top: 10px;
@@ -132,12 +128,11 @@ h1.page-title {
       color: white;
     }
   }
+}
 
-  @media (min-width: 376px) {
-    &.calendar, i.nav-toggle {
-      display: none;
-    }
-  }
+.brand {
+  font-family: "Courgette";
+  letter-spacing: 1px;
 }
 
 .header {
