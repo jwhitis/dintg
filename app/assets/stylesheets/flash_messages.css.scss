@@ -11,7 +11,7 @@ div.flash-message {
   letter-spacing: .5px;
   font-weight: lighter;
   color: white;
-  text-shadow: 0 1px 1px rgba(black, .15);
+  text-shadow: $basic-text-shadow;
 
   &.flash-notice {
     background-color: rgba($green, .85);

@@ -30,24 +30,24 @@ $(document).on("ready page:load", function() {
     var title = $(this).data("title");
     $("#events-title").text(title);
 
-    $(".flipper").addClass("flip");
+    $("#calendar .flipper").addClass("flip");
   });
 
   // Clicking exit button triggers reverse animation
   $("#calendar .exit").click(function() {
-    $(".flipper").removeClass("flip");
+    $("#calendar .flipper").removeClass("flip");
   });
 
   // Loading icon appears on calendar reload
   $("#calendar").find(".previous, .next, .disabled a").click(function() {
-    $(".loading").show();
+    $("#calendar .loading").show();
   });
 
-  function dayBackground(element, lightness) {
-    var hue = 33;
-    var density = +element.data("density");
-    hue = Math.round(hue - (hue * density));
-    return "hsla(" + hue + ", 100%, " + lightness + ", .85)";
-  }
-
 });
+
+function dayBackground(element, lightness) {
+  var hue = 33;
+  var density = +element.data("density");
+  hue = Math.round(hue - (hue * density));
+  return "hsla(" + hue + ", 100%, " + lightness + ", .85)";
+}

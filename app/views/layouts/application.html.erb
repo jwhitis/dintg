@@ -8,20 +8,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="overlay"></div>
-  <div id="wrapper">
-    <%= render "layouts/flash_messages" %>
+  <%= render "layouts/flash_messages" %>
 
-    <%= render "layouts/nav" %>
+  <%= render "layouts/nav" %>
 
-    <div class="container">
-      <h1 class="header page-title <%= "hidden-desktop" unless page_needs_desktop_title? %>">
-        <%= yield :page_title %>
-        <%= fa_icon("bars", class: "nav-toggle hidden-desktop") %>
-      </h1>
+  <div class="container">
+    <h1 class="header page-title <%= "hidden-desktop" unless page_needs_desktop_title? %>">
+      <%= yield :page_title %>
+      <%= fa_icon("bars", class: "nav-toggle hidden-desktop") %>
+    </h1>
 
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
 </body>
 </html>

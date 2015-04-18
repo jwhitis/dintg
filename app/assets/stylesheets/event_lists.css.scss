@@ -8,7 +8,7 @@ ol.event-list {
     letter-spacing: .5px;
     font-weight: lighter;
     color: white;
-    text-shadow: 0 1px 1px rgba(black, .15);
+    text-shadow: $basic-text-shadow;
     background-color: rgba($light-orange, .85);
 
     &:nth-child(even) {

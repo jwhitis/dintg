@@ -14,7 +14,8 @@ div#gigs {
         letter-spacing: .5px;
         font-weight: lighter;
         color: white;
-        text-shadow: 0 1px 1px rgba(black, .15);
+        text-shadow: $basic-text-shadow;
+        cursor: pointer;
 
         div.flipper-container, div.flipper, div.front, div.back {
           min-height: 44px;
@@ -208,7 +209,7 @@ div#create-gig-modal {
       letter-spacing: .5px;
       font-weight: lighter;
       color: white;
-      text-shadow: 0 1px 1px rgba(black, .15);
+      text-shadow: $basic-text-shadow;
       background-color: rgba($red, .85);
 
       i.fa-exclamation-triangle {

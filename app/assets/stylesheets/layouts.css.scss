@@ -1,106 +1,20 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic);
-@import url(http://fonts.googleapis.com/css?family=Courgette);
-
 html {
   height: 100%;
 }
 
 body {
   height: 100%;
-  font-family: "Lato";
-  background-image: url(gs_irish_hands.jpg);
-  background-position: center top;
+  font-family: $main-font;
+  background: linear-gradient(to right, rgba($eggshell, .25) 0%, rgba($eggshell, .25) 100%),
+    url(gs_irish_hands.jpg);
   background-repeat: no-repeat;
-  background-size: auto 100%;
-}
-
-@media (min-width: 1060px) {
-  body {
-    background-size: 100% auto;
-  }
-}
-
-div#overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 1;
-  background-color: rgba($eggshell, .25);
-}
-
-div#wrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 2;
+  background-position: center;
+  background-size: cover;
 }
 
 div.container {
   max-width: 375px;
   padding: 0;
-}
-
-nav {
-  display: none;
-  background-color: rgba(#333333, .95);
-
-  a {
-    padding: 8px 10px;
-    line-height: 28px;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    color: darken(white, 15%);
-    text-shadow: 0 1px 1px rgba(black, .15);
-    transition: all .2s ease;
-
-    &:hover {
-      text-decoration: none;
-      color: white;
-    }
-
-    &.brand {
-      float: left;
-      font-size: 20px;
-      text-transform: none;
-    }
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    li {
-      a {
-        display: block;
-        text-align: center;
-        border-top: 1px solid rgba(white, .1);
-        border-bottom: 1px solid rgba(black, .25);
-        font-size: 16px;
-      }
-    }
-  }
-}
-
-@media (min-width: 376px) {
-  nav {
-    margin-bottom: 15px;
-    border-bottom: 2px solid rgba(black, .1);
-    display: block !important;
-
-    ul {
-      float: right;
-
-      li {
-        float: left;
-
-        a {
-          font-size: 14px;
-          border: none;
-        }
-      }
-    }
-  }
 }
 
 h1.page-title {
@@ -118,60 +32,5 @@ h1.page-title {
     &:hover {
       color: white;
     }
-  }
-}
-
-.brand {
-  font-family: "Courgette";
-  letter-spacing: 1px;
-}
-
-.header {
-  margin: 0;
-  padding: 10px 15px;
-  border-bottom: 2px solid rgba(black, .15);
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: .5px;
-  color: white;
-  text-shadow: 0 1px 1px rgba(black, .15);
-  background-color: rgba($light-blue, .85);
-}
-
-%btn-base {
-  padding: 5px 20px;
-  display: inline-block;
-  border-width: 0 0 2px 0;
-  border-bottom: 2px solid darken(#454545, 5%);
-  border-radius: 4px;
-  font-size: 18px;
-  letter-spacing: .5px;
-  font-weight: lighter;
-  color: darken(white, 5%);
-  text-shadow: 0 1px 1px rgba(black, .15);
-  background-color: #454545;
-  box-shadow: 0 1px 2px rgba(black, .25);
-  transition: all .2s ease;
-
-  &:hover {
-    border-bottom-color: #454545;
-    text-decoration: none;
-    color: white;
-    background-color: lighten(#454545, 5%);
-  }
-
-  &:focus {
-    text-decoration: none;
-  }
-}
-
-.btn-blue {
-  @extend %btn-base;
-  border-bottom-color: darken($light-blue, 5%);
-  background-color: $light-blue;
-
-  &:hover {
-    border-bottom-color: $light-blue;
-    background-color: lighten($light-blue, 5%);
   }
 }

@@ -21,9 +21,9 @@ div#accounts-edit {
       &.selected {
         text-decoration: none;
         color: white;
-        text-shadow: 0 1px 1px rgba(black, .15);
+        text-shadow: $basic-text-shadow;
         background-color: $orange;
-        box-shadow: 0 2px 5px rgba(black, .25);
+        box-shadow: $basic-box-shadow;
       }
     }
   }

@@ -40,7 +40,7 @@ div#calendar {
     table {
       width: 100%;
       border-collapse: separate;
-      text-shadow: 0 1px 1px rgba(black, .15);
+      text-shadow: $basic-text-shadow;
       background-color: rgba(white, .25);
 
       th, td {
@@ -169,7 +169,7 @@ div#calendar {
           letter-spacing: .5px;
           font-weight: lighter;
           color: white;
-          text-shadow: 0 1px 1px rgba(black, .15);
+          text-shadow: $basic-text-shadow;
           background-color: rgba($light-orange, .85);
         }
       }

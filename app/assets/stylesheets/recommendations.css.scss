@@ -20,7 +20,7 @@ div.recommendation {
         border-radius: 50%;
         border: 3px solid white;
         background-color: lighten($yellow, 5%);
-        box-shadow: 0 2px 5px rgba(black, .25);
+        box-shadow: $basic-box-shadow;
       }
     }
 
@@ -31,7 +31,7 @@ div.recommendation {
       p {
         margin: 0;
         line-height: 16px;
-        text-shadow: 0 1px 1px rgba(black, .15);
+        text-shadow: $basic-text-shadow;
       }
     }
   }
@@ -81,7 +81,7 @@ div.recommendation {
         font-size: 10px;
         text-transform: uppercase;
         color: darken(white, 5%);
-        text-shadow: 0 1px 1px rgba(black, .15);
+        text-shadow: $basic-text-shadow;
         background-color: #666666;
       }
 
