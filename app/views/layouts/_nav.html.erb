@@ -1,9 +1,9 @@
 <nav>
   <div class="container">
-    <%= link_to "amifree", root_path , class: "brand" %>
+    <%= link_to "amifree", root_path , class: "brand hidden-mobile" %>
 
     <ul>
-      <li class="home"><%= link_to "Home", root_path %></li>
+      <li class="hidden-desktop"><%= link_to "Home", root_path %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Events", gigs_path %></li>
         <li><%= link_to "Settings", edit_users_account_path %></li>
