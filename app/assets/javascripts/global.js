@@ -10,9 +10,14 @@ $(document).on("ready page:load", function() {
   });
 
   // Clicking item in gig list flips item
-  $(".gig-list li").click(function(event) {
+  $(".gig-list .flipper").click(function(event) {
     if (event.target.tagName != "A") {
-      $(this).find(".flipper").toggleClass("flip");
+      if ($(this).hasClass("flip")) {
+        $(this).removeClass("flip");
+      } else {
+        $(".gig-list .flip").removeClass("flip");
+        $(this).addClass("flip");
+      }
     }
   });
 

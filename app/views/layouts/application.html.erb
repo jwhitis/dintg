@@ -13,12 +13,16 @@
   <%= render "layouts/nav" %>
 
   <div class="container">
-    <h1 class="header page-title <%= "hidden-desktop" unless page_needs_desktop_title? %>">
-      <%= yield :page_title %>
-      <%= fa_icon("bars", class: "nav-toggle hidden-desktop") %>
-    </h1>
+    <div class="<%= "main" unless template_contains_main_section? %>">
+      <h1 class="header page-title <%= "hidden-desktop" if template_contains_main_section? %>">
+        <%= yield :page_title %>
+        <%= fa_icon("bars", class: "nav-toggle hidden-desktop") %>
+      </h1>
 
-    <%= yield %>
+      <div class="<%= "content" unless template_contains_main_section? %>">
+        <%= yield %>
+      </div>
+    </div>
   </div>
 </body>
 </html>

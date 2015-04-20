@@ -1,7 +1,6 @@
 div.recommendation {
-  letter-spacing: .5px;
   font-weight: lighter;
-  color: #666666;
+  color: $grey;
 
   div.info-box {
     padding: 10px 10px 11px 10px;
@@ -63,7 +62,7 @@ div.recommendation {
       position: absolute;
       top: 6px;
       left: 0;
-      z-index: 2;
+      z-index: 3;
       font-size: 12px;
       font-weight: bold;
       text-transform: uppercase;
@@ -72,9 +71,9 @@ div.recommendation {
     div.marker {
       position: absolute;
       top: 0;
-      z-index: 3;
+      z-index: 4;
 
-      div.content {
+      div.text {
         padding: 0 4px 1px 5px;
         border-top: 1px solid rgba(white, .25);
         border-radius: 4px;
@@ -82,14 +81,14 @@ div.recommendation {
         text-transform: uppercase;
         color: darken(white, 5%);
         text-shadow: $basic-text-shadow;
-        background-color: #666666;
+        background-color: $grey;
       }
 
       div.arrow {
         width: 0;
         position: relative;
         left: 18px;
-        border-top: 5px solid #666666;
+        border-top: 5px solid $grey;
         border-left: 5px solid transparent;
         border-right: 5px solid transparent;
       }

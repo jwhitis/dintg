@@ -5,6 +5,7 @@ html {
 body {
   height: 100%;
   font-family: $main-font;
+  letter-spacing: .5px;
   background: linear-gradient(to right, rgba($eggshell, .25) 0%, rgba($eggshell, .25) 100%),
     url(gs_irish_hands.jpg);
   background-repeat: no-repeat;

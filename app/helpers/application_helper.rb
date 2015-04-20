@@ -65,8 +65,8 @@ module ApplicationHelper
     content_tag(:span, gig.ends_at.strftime("%l:%M %p"), class: "end-time")
   end
 
-  def page_needs_desktop_title?
-    controller_path != "devise/sessions" && action_name != "calendar"
+  def template_contains_main_section?
+    controller_path == "devise/sessions" || action_name == "calendar"
   end
 
   def formatted_error_messages(resource)

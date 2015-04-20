@@ -53,7 +53,7 @@ class RecommendationPresenter
   def marker
     helpers.content_tag(:div, class: "marker", style: "left: #{percentage_of_period_elapsed};
       left: calc(#{percentage_of_period_elapsed} - 23px);".squish) do
-      helpers.content_tag(:div, "Today", class: "content") +
+      helpers.content_tag(:div, "Today", class: "text") +
       helpers.content_tag(:div, "", class: "arrow") +
       helpers.content_tag(:div, "", class: "line")
     end

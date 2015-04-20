@@ -1,12 +1,14 @@
 <h3 class="header">
-  <span id="events-title">Events</span>
+  <span id="events-title"></span>
   <%= link_to fa_icon("times"), "javascript:void(0)", class: "exit" %>
 </h3>
 
-<div class="events-container">
+<div class="content">
   <div id="events"></div>
 
   <div class="footer">
-    <%= link_to "Add Event", "javascript:void(0)", class: "btn-blue", id: "add-event" %>
+    <div class="inner">
+      <%= link_to "Add Event", "javascript:void(0)", class: "btn-blue btn-block", id: "add-event" %>
+    </div>
   </div>
 </div>

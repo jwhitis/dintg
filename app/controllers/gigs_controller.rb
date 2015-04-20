@@ -5,7 +5,7 @@ class GigsController < ApplicationController
   before_action :combine_time_params, only: [:create, :update]
 
   def index
-    @gigs = current_user.gigs
+    @gigs_by_date = current_user.gigs.grouped_by_date
   end
 
   def calendar

@@ -1,165 +1,129 @@
 div#gigs {
-  box-shadow: 0 2px 10px 2px rgba(black, .25);
+  div.gig-list {
+    margin: 0 -15px;
+    border-top: 1px solid rgba(black, .05);
 
-  div.body {
-    padding: 15px;
-    background-color: rgba(white, .85);
+    div.date-separator {
+      padding: 0 15px;
+      font-family: $header-font;
+      color: $grey;
+      background-color: white;
+    }
 
-    ol.gig-list {
-      margin: 0 -15px;
-      padding: 0;
-      list-style: none;
+    div.flipper-container, div.flipper, div.front, div.back {
+      min-height: 44px;
+    }
 
-      li {
-        letter-spacing: .5px;
-        font-weight: lighter;
-        color: white;
-        text-shadow: $basic-text-shadow;
+    div.gig {
+      font-weight: lighter;
+      color: white;
+      text-shadow: $basic-text-shadow;
+
+      div.row {
+        margin: 0;
         cursor: pointer;
 
-        div.flipper-container, div.flipper, div.front, div.back {
-          min-height: 44px;
-        }
-
         div[class*="col"] {
-          padding: 8px 10px;
+          padding-top: 8px;
+          padding-bottom: 8px;
 
           &:first-child {
             position: relative;
-            border-right: 1px solid white;
+            border-right: 2px solid white;
 
             i.fa-circle {
               position: absolute;
               top: 18px;
-              right: -5px;
-              font-size: 8px;
+              right: -6px;
+              z-index: 9999;
+              font-size: 10px;
               text-shadow: none;
             }
           }
         }
+      }
 
-        div.arrow {
-          width: 15px;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          z-index: 9999;
-          background-color: rgba(black, .15);
-          cursor: pointer;
+      div.front {
+        line-height: 14px;
+        background-color: lighten($light-orange, 5%);
 
-          i.fa {
-            position: absolute;
-            top: 15px;
-          }
+        div.time {
+          padding-right: 0;
+          font-size: 12px;
         }
 
-        div.front {
-          padding: 0 15px;
-          line-height: 14px;
-          background-color: lighten($light-orange, 5%);
+        div.location {
+          font-size: 10px;
+        }
+      }
 
-          div[class*="col"]:last-child {
-            padding-right: 15px;
-          }
+      div.back {
+        line-height: 28px;
+        background-color: $green;
 
-          div.time {
-            font-size: 12px;
-          }
+        div.buttons {
+          padding: 0;
 
-          div.location {
-            font-size: 10px;
-          }
+          a {
+            width: 50%;
+            padding: 8px 15px;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            font-weight: normal;
+            text-transform: uppercase;
+            color: darken(white, 5%);
+            transition: all .2s ease;
 
-          div.arrow {
-            right: 0;
+            &:hover {
+              text-decoration: none;
+              color: white;
+            }
 
-            i.fa-caret-right {
-              left: 5px;
+            &.edit {
+              background-color: $light-blue;
+
+              &:hover {
+                background-color: lighten($light-blue, 5%);
+              }
+            }
+
+            &.delete {
+              background-color: darken($red, 5%);
+
+              &:hover {
+                background-color: $red;
+              }
             }
           }
+        }
+      }
+
+      &:nth-child(even) {
+        div.front {
+          background-color: $light-orange;
         }
 
         div.back {
-          padding: 0 15px;
-          line-height: 28px;
-          background-color: $green;
-
-          div.arrow {
-            left: 0;
-
-            i.fa-caret-left {
-              left: 4px;
-            }
-          }
-
-          div[class*="col"]:first-child {
-            padding-left: 20px;
-          }
+          background-color: darken($green, 5%);
 
           div.buttons {
-            padding: 0 0 0 25px;
-
             a {
-              width: 50%;
-              padding: 8px 15px;
-              float: right;
-              text-align: center;
-              font-size: 16px;
-              font-weight: normal;
-              text-transform: uppercase;
-              color: darken(white, 5%);
-              transition: all .2s ease;
-
-              &:hover {
-                text-decoration: none;
-                color: white;
-              }
+              color: darken(white, 10%);
 
               &.edit {
-                background-color: $light-blue;
+                background-color: darken($light-blue, 5%);
 
                 &:hover {
-                  background-color: lighten($light-blue, 5%);
+                  background-color: $light-blue;
                 }
               }
 
               &.delete {
-                background-color: darken($red, 5%);
+                background-color: darken($red, 10%);
 
                 &:hover {
-                  background-color: $red;
-                }
-              }
-            }
-          }
-        }
-
-        &:nth-child(even) {
-          div.front {
-            background-color: $light-orange;
-          }
-
-          div.back {
-            background-color: darken($green, 5%);
-
-            div.buttons {
-              a {
-                color: darken(white, 10%);
-
-                &.edit {
-                  background-color: darken($light-blue, 5%);
-
-                  &:hover {
-                    background-color: $light-blue;
-                  }
-                }
-
-                &.delete {
-                  background-color: darken($red, 10%);
-
-                  &:hover {
-                    background-color: darken($red, 5%);
-                  }
+                  background-color: darken($red, 5%);
                 }
               }
             }
@@ -171,25 +135,11 @@ div#gigs {
 }
 
 div#gigs-new, div#gigs-edit {
-  box-shadow: 0 2px 10px 2px rgba(black, .25);
-
   div.times {
-    margin-top: -5px;
     text-align: center;
 
     select {
       background-position: 96% 50%;
-    }
-  }
-
-  div.currency {
-    margin: 0 -15px;
-    padding: 0 15px 15px 15px;
-    border-bottom: 1px solid rgba(black, .15px);
-
-    i.fa-dollar {
-      bottom: 25px;
-      left: 28px;
     }
   }
 }
@@ -206,7 +156,6 @@ div#create-gig-modal {
       margin: 0 -15px 10px -15px;
       padding: 10px 15px;
       line-height: 16px;
-      letter-spacing: .5px;
       font-weight: lighter;
       color: white;
       text-shadow: $basic-text-shadow;
@@ -221,8 +170,6 @@ div#create-gig-modal {
     }
 
     div.event-list {
-      margin: 0 -15px;
-
       div.row {
         background-color: rgba($light-orange, .85);
 
@@ -257,28 +204,23 @@ div#create-gig-modal {
 
       a {
         position: relative;
-        top: 7px;
+        top: 6px;
         font-size: 16px;
-        letter-spacing: .5px;
         font-weight: lighter;
         text-decoration: underline;
-        color: #333333;
+        color: $grey;
       }
     }
   }
 
   div.footer {
-    margin: 20px -15px -15px -15px;
-    border-top: 1px solid rgba(black, .15px);
+    line-height: 16px;
+    font-weight: lighter;
+    color: $grey;
 
-    p.footnote {
-      margin: 0;
-      padding: 10px 15px 10px 25px;
-      border-top: 1px solid white;
-      line-height: 16px;
-      letter-spacing: .5px;
-      font-weight: lighter;
-      color: #666666;
+    div.inner {
+      padding-top: 10px;
+      padding-left: 25px;
 
       sup {
         margin: 0 3px 0 -10px;
@@ -286,7 +228,7 @@ div#create-gig-modal {
 
       a {
         text-decoration: underline;
-        color: #333333;
+        color: $grey;
       }
     }
   }

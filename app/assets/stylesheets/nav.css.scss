@@ -4,8 +4,8 @@ nav {
 
   a {
     padding: 8px 10px;
+    font-family: $header-font;
     line-height: 28px;
-    letter-spacing: .5px;
     text-transform: uppercase;
     color: darken(white, 15%);
     text-shadow: $basic-text-shadow;

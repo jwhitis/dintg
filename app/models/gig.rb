@@ -40,6 +40,10 @@ class Gig < ActiveRecord::Base
     where(paid: true)
   end
 
+  def self.grouped_by_date
+    select("*, DATE(starts_at) starts_on").order(:starts_at).group_by(&:starts_on)
+  end
+
   private
 
   def ends_at_must_be_after_starts_at

@@ -1,7 +1,4 @@
 form.basic-form {
-  padding: 15px;
-  background-color: rgba(white, .85);
-
   div.neg-top-margin {
     margin-top: -5px;
   }
@@ -18,21 +15,19 @@ form.basic-form {
 
   label, p {
     line-height: 16px;
-    letter-spacing: .5px;
     font-weight: lighter;
-    color: #666666;
+    color: $grey;
 
     &.instructions {
-      margin: 0 5px 5px 5px;
+      margin: 0 0 5px 1px;
     }
   }
 
   input[type="text"], select {
     border-color: #DDDDDD;
     border-radius: 0;
-    letter-spacing: .5px;
     font-weight: lighter;
-    color: #666666;
+    color: $grey;
   }
 
   select {
@@ -59,7 +54,7 @@ form.basic-form {
   }
 
   div.checkbox {
-    margin-top: 0;
+    margin: 0 0 15px 0;
 
     input[type="checkbox"] {
       width: 14px;
@@ -72,18 +67,12 @@ form.basic-form {
     }
   }
 
-  div.form-footer {
-    margin: 0 -15px;
-    padding: 15px 15px 0 15px;
-    border-top: 1px solid white;
-
-    a.cancel {
-      margin: 9px 5px 0 0;
-      float: right;
-      letter-spacing: .5px;
-      font-weight: lighter;
-      text-decoration: underline;
-      color: #666666;
-    }
+  a.cancel {
+    margin: 6px 5px 0 0;
+    float: right;
+    font-size: 16px;
+    font-weight: lighter;
+    text-decoration: underline;
+    color: $grey;
   }
 }

@@ -1,43 +1,31 @@
-<li>
-  <div class="flipper-container vertical">
-    <div class="flipper">
-      <div class="front">
-        <div class="row">
-          <div class="col-xs-3 time">
-            <%== format_gig_time(gig) %>
-            <%= fa_icon("circle") %>
-          </div>
-          <div class="col-xs-9">
-            <div>
-              <%= truncate(gig.summary, length: 30) %>
-            </div>
-            <div class="location">
-              <%= truncate(gig.location, length: 30) %>
-            </div>
-          </div>
-        </div>
-        <div class="arrow">
-          <%= fa_icon("caret-right") %>
-        </div>
+<div class="flipper-container vertical gig">
+  <div class="flipper">
+    <div class="front row">
+      <div class="col-xs-3 time">
+        <%== format_gig_time(gig) %>
+        <%= fa_icon("circle") %>
       </div>
-
-      <div class="back">
-        <div class="arrow">
-          <%= fa_icon("caret-left") %>
+      <div class="col-xs-9">
+        <div>
+          <%= truncate(gig.summary, length: 30) %>
         </div>
-        <div class="row">
-          <div class="col-xs-3">
-            <%= number_to_currency(gig.pay, precision: 0) %>
-            <%= fa_icon("circle") %>
-          </div>
-          <div class="col-xs-9 buttons">
-            <%= link_to "Delete", gig, method: :delete, class: "delete",
-              data: { confirm: "Are you sure you want to delete this gig?
-              It will be removed from your Google Calendar.".squish } %>
-            <%= link_to "Edit", edit_gig_path(gig), class: "edit" %>
-          </div>
+        <div class="location">
+          <%= truncate(gig.location, length: 30) %>
         </div>
       </div>
     </div>
+
+    <div class="back row">
+      <div class="col-xs-3">
+        <%= number_to_currency(gig.pay, precision: 0) %>
+        <%= fa_icon("circle") %>
+      </div>
+      <div class="col-xs-9 buttons">
+        <%= link_to "Edit", edit_gig_path(gig), class: "edit" %>
+        <%= link_to "Delete", gig, method: :delete, class: "delete",
+          data: { confirm: "Are you sure you want to delete this gig?
+          It will be removed from your Google Calendar.".squish } %>
+      </div>
+    </div>
   </div>
-</li>
+</div>

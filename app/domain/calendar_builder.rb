@@ -73,7 +73,7 @@ class CalendarBuilder
 
   def day_title(day)
     date = Date.new(@year, @month, day)
-    date.strftime("%A, %b. #{day.ordinalize}")
+    date.strftime("%A, %B #{day.ordinalize}")
   end
 
   def day_offset

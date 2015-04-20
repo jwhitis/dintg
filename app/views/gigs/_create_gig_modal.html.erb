@@ -1,9 +1,9 @@
 <div id="create-gig-modal" class="modal fade">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content main">
       <h3 class="header"><%= gig.summary %></h3>
 
-      <div class="modal-body">
+      <div class="modal-body content">
         <% if conflicts.present? %>
           <div id="conflicts">
             <p>
@@ -31,10 +31,10 @@
 
         <% unless gig.in_past? %>
           <div class="footer">
-            <p class="footnote">
+            <div class="inner">
               <sup>1</sup>Your account is set up to track your progress by
               <%= link_to current_user.configuration.time_period, edit_users_account_path %>.
-            </p>
+            </div>
           </div>
         <% end %>
       </div>

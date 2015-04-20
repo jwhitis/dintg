@@ -13,7 +13,7 @@
 
   <%= f.hidden_field :date %>
 
-  <div class="form-group row times">
+  <div class="form-group row times neg-top-margin">
     <div class="col-xs-6">
       <%= f.label :starts_at, "Start Time:" %>
       <%= f.select(:starts_at, time_options_for_select(gig.starts_at), {}, class: "form-control") %>
@@ -36,8 +36,10 @@
 
   <%= hidden_field_tag :double_confirmation, false %>
 
-  <div class="form-footer">
-    <%= f.submit "Save", class: "btn-blue" %>
-    <%= link_to "Cancel", gig.new_record? ? calendar_gigs_path : gigs_path, class: "cancel" %>
+  <div class="footer">
+    <div class="inner">
+      <%= f.submit "Save", class: "btn-blue" %>
+      <%= link_to "Cancel", gig.new_record? ? calendar_gigs_path : gigs_path, class: "cancel" %>
+    </div>
   </div>
 <% end %>
