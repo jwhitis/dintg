@@ -1,11 +1,9 @@
 div.event-list {
-  margin: 0 -15px;
   font-weight: lighter;
   color: white;
   text-shadow: $basic-text-shadow;
 
   div.row {
-    margin: 0;
     background-color: rgba($light-orange, .85);
 
     &:nth-child(even) {
