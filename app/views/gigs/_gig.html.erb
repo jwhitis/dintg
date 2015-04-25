@@ -6,11 +6,11 @@
         <%= fa_icon("circle") %>
       </div>
       <div class="col-xs-9">
-        <div>
-          <%= truncate(gig.summary, length: 30) %>
+        <div class="summary">
+          <%= truncate(gig.summary, length: 38) %>
         </div>
         <div class="location">
-          <%= truncate(gig.location, length: 30) %>
+          <%= truncate(gig.location, length: 50) %>
         </div>
       </div>
     </div>
