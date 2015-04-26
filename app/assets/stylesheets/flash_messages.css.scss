@@ -12,10 +12,10 @@ div.flash-message {
   text-shadow: $basic-text-shadow;
 
   &.flash-notice {
-    background-color: rgba($green, .85);
+    background-color: darken($green, 5%);
   }
 
   &.flash-alert {
-    background-color: rgba($red, .85);
+    background-color: darken($red, 5%);
   }
 }
