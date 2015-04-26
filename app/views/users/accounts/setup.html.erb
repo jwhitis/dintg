@@ -1,17 +1,42 @@
-<%= form_for @user, url: users_account_path do |f| %>
-  <%= f.fields_for :configuration, @user.configuration do |config| %>
-    <div class="form-group">
-      <%= config.label :calendar_id, "Which calendar do you want to use?" %>
-      <%= config.collection_select :calendar_id, @calendars, :id, :summary, {}, class: "form-control" %>
-    </div>
+<% content_for :page_title do %>
+  Getting Started
+<% end %>
+
+<div id="accounts-setup">
+  <%= form_for @user, url: users_account_path, html: { class: "basic-form" } do |f| %>
+    <%= render "shared/validation_errors", resource: @user %>
 
     <div class="form-group">
-      <%= config.label :monthly_goal, "How much money do you want to make each month?" %>
-      <%= config.text_field :monthly_goal, class: "form-control" %>
+      <%= f.label :time_zone, class: "instructions" do %>
+        Choose the time zone you live in:
+      <% end %>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,
+        { default: "Central Time (US & Canada)" }, class: "form-control" %>
+    </div>
+
+    <%= f.fields_for :configuration, @user.configuration do |config| %>
+      <div class="form-group neg-top-margin">
+        <%= config.label :calendar_id, class: "instructions" do %>
+          Choose the Google calendar where new events should be added:
+        <% end %>
+        <%= config.collection_select :calendar_id, @calendars, :id, :summary, {},
+          class: "form-control" %>
+      </div>
+
+      <div class="form-group currency neg-top-margin">
+        <%= config.label :monthly_goal, class: "instructions" do %>
+          Enter the amount that you want to make each <b>month</b>:
+        <% end %>
+        <%= fa_icon "dollar" %>
+        <%= config.text_field :monthly_goal, value: config.object.formatted_monthly_goal(""),
+          placeholder: "0.00", class: "form-control" %>
+      </div>
+    <% end %>
+
+    <div class="footer">
+      <div class="inner">
+        <%= f.submit "Continue", class: "btn-blue btn-block" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.submit "Save", class: "btn btn-default" %>
-  </div>
-<% end %>
+</div>

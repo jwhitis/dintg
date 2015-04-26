@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_setup?
-    configuration.monthly_goal.present?
+    configuration.calendar_id.present? && configuration.monthly_goal.present? &&
+      self.time_zone.present?
   end
 
   def self.find_for_google_oauth2(auth)

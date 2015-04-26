@@ -19,8 +19,8 @@ class Gig < ActiveRecord::Base
       "summary" => self.summary,
       "description" => "Pay: #{formatted_pay}",
       "location" => self.location,
-      "start" => { "dateTime" => self.starts_at },
-      "end" => { "dateTime" => self.ends_at }
+      "start" => { "dateTime" => self.starts_at.iso8601 },
+      "end" => { "dateTime" => self.ends_at.iso8601 }
     }
   end
 

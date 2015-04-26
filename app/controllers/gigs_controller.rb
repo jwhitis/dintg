@@ -120,10 +120,6 @@ class GigsController < ApplicationController
     params[:confirm_submission] == "1"
   end
 
-  def google_facade
-    @google_facade ||= GoogleAPIFacade.new(current_user)
-  end
-
   def gig_params
     params.require(:gig).permit(:pay, :summary, :location, :date, :starts_at, :ends_at)
   end

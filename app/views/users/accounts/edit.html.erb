@@ -13,6 +13,14 @@
       <p class="form-control-static"><%= @user.email %></p>
     </div>
 
+    <div class="form-group neg-top-margin">
+      <%= f.label :time_zone, class: "instructions" do %>
+        Choose the time zone you live in:
+      <% end %>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,
+        { default: "Central Time (US & Canada)" }, class: "form-control" %>
+    </div>
+
     <%= f.fields_for :configuration do |config| %>
       <div class="form-group neg-top-margin">
         <%= config.label :calendar_id, class: "instructions" do %>
