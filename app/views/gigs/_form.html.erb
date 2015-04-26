@@ -1,45 +1,36 @@
-<%= form_for gig, html: { class: "basic-form" } do |f| %>
-  <%= render "shared/validation_errors", resource: gig %>
+<%= render "shared/validation_errors", resource: gig %>
 
-  <div class="form-group">
-    <%= f.label :summary, "Title", class: "sr-only" %>
-    <%= f.text_field :summary, placeholder: "Title", class: "form-control" %>
+<div class="form-group">
+  <%= f.label :summary, "Title", class: "sr-only" %>
+  <%= f.text_field :summary, placeholder: "Title", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :location, class: "sr-only" %>
+  <%= f.text_field :location, placeholder: "Location (optional)", class: "form-control" %>
+</div>
+
+<%= f.hidden_field :date %>
+
+<div class="form-group row times neg-top-margin">
+  <div class="col-xs-6">
+    <%= f.label :starts_at, "Start Time:" %>
+    <%= f.select(:starts_at, time_options_for_select(gig.starts_at), {}, class: "form-control") %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :location, class: "sr-only" %>
-    <%= f.text_field :location, placeholder: "Location (optional)", class: "form-control" %>
+  <div class="col-xs-6">
+    <%= f.label :ends_at, "End Time:" %>
+    <%= f.select(:ends_at, time_options_for_select(gig.ends_at, 1), {}, class: "form-control") %>
   </div>
+</div>
 
-  <%= f.hidden_field :date %>
+<div class="form-group currency neg-top-margin">
+  <%= f.label :pay, class: "instructions" do %>
+    Enter the amount that this event pays:
+  <% end %>
+  <%= fa_icon "dollar" %>
+  <%= f.text_field :pay, value: gig.formatted_pay(""), placeholder: "0.00",
+    class: "form-control" %>
+</div>
 
-  <div class="form-group row times neg-top-margin">
-    <div class="col-xs-6">
-      <%= f.label :starts_at, "Start Time:" %>
-      <%= f.select(:starts_at, time_options_for_select(gig.starts_at), {}, class: "form-control") %>
-    </div>
-
-    <div class="col-xs-6">
-      <%= f.label :ends_at, "End Time:" %>
-      <%= f.select(:ends_at, time_options_for_select(gig.ends_at, 1), {}, class: "form-control") %>
-    </div>
-  </div>
-
-  <div class="form-group currency neg-top-margin">
-    <%= f.label :pay, class: "instructions" do %>
-      Enter the amount that this event pays:
-    <% end %>
-    <%= fa_icon "dollar" %>
-    <%= f.text_field :pay, value: gig.formatted_pay(""), placeholder: "0.00",
-      class: "form-control" %>
-  </div>
-
-  <%= hidden_field_tag :double_confirmation, false %>
-
-  <div class="footer">
-    <div class="inner">
-      <%= f.submit "Save", class: "btn-blue" %>
-      <%= link_to "Cancel", gig.new_record? ? calendar_gigs_path : gigs_path, class: "cancel" %>
-    </div>
-  </div>
-<% end %>
+<%= hidden_field_tag :confirm_submission %>

@@ -1,13 +1,22 @@
 <div id="update-gig-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content main">
+      <h3 class="header"><%= gig.summary %></h3>
+
       <div class="modal-body content">
-        <%= render "conflicts", conflicts: @conflicts %>
+        <%= render "conflicts", conflicts: conflicts %>
 
-        <p>Would you still like to update the gig?</p>
+        <p class="confirmation">Are you sure you want to update this gig?</p>
 
-        <button type="button" class="btn btn-primary" id="confirm-button">Yes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <div class="buttons clearfix">
+          <div class="col-left">
+            <button type="button" class="btn-blue" id="confirm-button">Yes, I'm Sure</button>
+          </div>
+
+          <div class="col-right">
+            <%= link_to "Cancel", "javasript:void(0)", data: { dismiss: "modal" } %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

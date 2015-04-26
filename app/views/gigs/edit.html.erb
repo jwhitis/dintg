@@ -3,18 +3,27 @@
 <% end %>
 
 <div id="gigs-edit">
-  <%= render "form", gig: @gig %>
+  <%= form_for @gig, html: { class: "basic-form" } do |f| %>
+    <%= render "form", f: f, gig: @gig %>
+
+    <div class="footer">
+      <div class="inner">
+        <%= f.submit "Save", class: "btn-blue" %>
+        <%= link_to "Cancel", gigs_path, class: "cancel" %>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <% if @conflicts.present? %>
-  <%= render "update_gig_modal", conflicts: @conflicts %>
+  <%= render "update_gig_modal", gig: @gig, conflicts: @conflicts %>
 
   <script type="text/javascript">
     $("#update-gig-modal").modal("show");
 
     $("#confirm-button").click(function() {
       $("#update-gig-modal").modal("hide");
-      $("#double_confirmation").val(true);
+      $("#confirm_submission").val("1");
       $("#gigs-edit form").submit();
     });
   </script>

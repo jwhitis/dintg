@@ -41,7 +41,8 @@ class Gig < ActiveRecord::Base
   end
 
   def self.grouped_by_date
-    select("*, DATE(starts_at) starts_on").order(:starts_at).group_by(&:starts_on)
+    gigs_hash = select("*, DATE(starts_at) starts_on").order(:starts_at).group_by(&:starts_on)
+    gigs_hash.to_a.reverse.to_h
   end
 
   private

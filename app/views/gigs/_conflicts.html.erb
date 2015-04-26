@@ -1,7 +1,9 @@
-<p>You have the following events scheduled during that time:</p>
+<div class="conflicts">
+  <p>
+    <%= fa_icon("exclamation-triangle") %>
+    You have the following conflicts:
+  </p>
 
-<ul>
-  <% conflicts.each do |event| %>
-    <li><%= event.summary %> (<%= format_event_time(event) %>)</li>
-  <% end %>
-</ul>
+  <% event_presenter = EventPresenter.new(conflicts) %>
+  <%= event_presenter.event_list %>
+</div>

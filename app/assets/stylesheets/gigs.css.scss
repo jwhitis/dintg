@@ -80,7 +80,7 @@ div#gigs {
             color: darken(white, 5%);
             transition: all .2s ease;
 
-            &:hover {
+            &:hover, &:focus {
               text-decoration: none;
               color: white;
             }
@@ -149,12 +149,12 @@ div#gigs-new, div#gigs-edit {
   }
 }
 
-div#create-gig-modal {
+div#create-gig-modal, div#update-gig-modal {
   h3.header {
     background-color: $light-blue;
   }
 
-  div#conflicts {
+  div.conflicts {
     margin-bottom: 10px;
 
     p {
@@ -183,10 +183,6 @@ div#create-gig-modal {
         }
       }
     }
-  }
-
-  div.recommendation {
-    margin-bottom: 20px;
   }
 
   div.buttons {
@@ -236,5 +232,22 @@ div#create-gig-modal {
         color: $grey;
       }
     }
+  }
+}
+
+div#create-gig-modal {
+  div.recommendation {
+    margin-bottom: 20px;
+  }
+}
+
+div#update-gig-modal {
+  p.confirmation {
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: lighter;
   }
 }

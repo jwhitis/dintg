@@ -3,7 +3,16 @@
 <% end %>
 
 <div id="gigs-new">
-  <%= render "form", gig: @gig %>
+  <%= form_for @gig, html: { class: "basic-form" } do |f| %>
+    <%= render "form", f: f, gig: @gig %>
+
+    <div class="footer">
+      <div class="inner">
+        <%= f.submit "Save", class: "btn-blue" %>
+        <%= link_to "Cancel", calendar_gigs_path, class: "cancel" %>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 <% if @recommendation %>
@@ -14,7 +23,7 @@
 
     $("#confirm-button").click(function() {
       $("#create-gig-modal").modal("hide");
-      $("#double_confirmation").val(true);
+      $("#confirm_submission").val("1");
       $("#gigs-new form").submit();
     });
   </script>

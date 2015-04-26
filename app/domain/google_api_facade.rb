@@ -45,7 +45,7 @@ class GoogleAPIFacade
       headers: { "Content-Type" => "application/json" }
     )
 
-    result.data
+    result.data.status == "confirmed" ? result.data : false
   end
 
   def update_event(event_id, event_params)
@@ -59,7 +59,12 @@ class GoogleAPIFacade
       headers: { "Content-Type" => "application/json" }
     )
 
-    result.data
+    # Recreate the event if it no longer exists.
+    if result.data.status == "cancelled"
+      return create_event(event_params)
+    end
+
+    result.data.status == "confirmed" ? result.data : false
   end
 
   def destroy_event(event_id)
@@ -71,18 +76,11 @@ class GoogleAPIFacade
       }
     )
 
-    # Google returns an empty response body if the event was successfully
-    # deleted or a descriptive error if the event no longer exists.
-    result.body.empty? || event_not_found?(result.body)
+    # The event was successfully deleted or it no longer exists.
+    result.response.status == 204 || result.response.status == 410
   end
 
   private
-
-  def event_not_found?(response)
-    if error = JSON.parse(response)["error"]
-      error["code"] == 410
-    end
-  end
 
   def calendar_api
     @calendar_api ||= @client.discovered_api("calendar", "v3")

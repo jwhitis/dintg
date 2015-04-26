@@ -5,15 +5,7 @@
 
       <div class="modal-body content">
         <% if conflicts.present? %>
-          <div id="conflicts">
-            <p>
-              <%= fa_icon("exclamation-triangle") %>
-              You have the following conflicts:
-            </p>
-
-            <% event_presenter = EventPresenter.new(conflicts) %>
-            <%= event_presenter.event_list %>
-          </div>
+          <%= render "conflicts", conflicts: conflicts %>
         <% end %>
 
         <% recommendation_presenter = RecommendationPresenter.new(recommendation) %>
