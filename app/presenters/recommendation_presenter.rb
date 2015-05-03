@@ -37,8 +37,8 @@ class RecommendationPresenter
   end
 
   def gig_in_past_text
-    "It looks like this gig already happened, but you can add it anyway to update your
-      records.".squish.html_safe
+    "It looks like this gig already happened, but you can add it to your calendar
+      anyway.".squish.html_safe
   end
 
   def timeline
@@ -209,7 +209,7 @@ class RecommendationPresenter
         end
       end +
       helpers.content_tag(:div, class: "col-right") do
-        helpers.content_tag(:p, text, class: text.length <= 55 ? "push" : nil)
+        helpers.content_tag(:p, text, class: text.length < 60 ? "top-margin" : nil)
       end
     end
   end
