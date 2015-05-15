@@ -1,0 +1,30 @@
+<% content_for :page_title do %>
+  Edit Event
+<% end %>
+
+<div id="events-edit">
+  <%= form_for @event, html: { class: "basic-form" } do |f| %>
+    <%= render "form", f: f, event: @event %>
+
+    <div class="footer">
+      <div class="inner">
+        <%= f.submit "Save", class: "btn-blue" %>
+        <%= link_to "Cancel", events_path, class: "cancel" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @conflicts.present? %>
+  <%= render "update_event_modal", event: @event, conflicts: @conflicts %>
+
+  <script type="text/javascript">
+    $("#update-event-modal").modal("show");
+
+    $("#confirm-button").click(function() {
+      $("#update-event-modal").modal("hide");
+      $("#confirm_submission").val("1");
+      $("#events-edit form").submit();
+    });
+  </script>
+<% end %>

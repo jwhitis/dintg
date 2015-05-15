@@ -1,29 +1,31 @@
-<div class="flipper-container vertical gig">
+<div class="flipper-container vertical event">
   <div class="flipper">
     <div class="front row">
       <div class="col-xs-3 time">
-        <%== format_gig_time(gig) %>
+        <%== format_event_time(event) %>
         <%= fa_icon("circle") %>
       </div>
       <div class="col-xs-9">
         <div class="summary">
-          <%= truncate(gig.summary, length: 38) %>
+          <%= truncate(event.summary, length: 38) %>
         </div>
         <div class="location">
-          <%= truncate(gig.location, length: 50) %>
+          <%= truncate(event.location, length: 50) %>
         </div>
       </div>
     </div>
 
     <div class="back row">
       <div class="col-xs-3">
-        <%= number_to_currency(gig.pay, precision: 0) %>
+        <% if event.is_a_gig? %>
+          <%= number_to_currency(event.pay, precision: 0) %>
+        <% end %>
         <%= fa_icon("circle") %>
       </div>
       <div class="col-xs-9 buttons">
-        <%= link_to "Edit", edit_gig_path(gig), class: "edit" %>
-        <%= link_to "Delete", gig, method: :delete, class: "delete",
-          data: { confirm: "Are you sure you want to delete this gig?
+        <%= link_to "Edit", edit_event_path(event), class: "edit" %>
+        <%= link_to "Delete", event, method: :delete, class: "delete",
+          data: { confirm: "Are you sure you want to delete this event?
           It will be removed from your Google Calendar.".squish } %>
       </div>
     </div>

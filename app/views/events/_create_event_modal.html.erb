@@ -1,15 +1,17 @@
-<div id="create-gig-modal" class="modal fade">
+<div id="create-event-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content main">
-      <h3 class="header"><%= gig.summary %></h3>
+      <h3 class="header"><%= event.summary %></h3>
 
       <div class="modal-body content">
         <% if conflicts.present? %>
           <%= render "conflicts", conflicts: conflicts %>
         <% end %>
 
-        <% recommendation_presenter = RecommendationPresenter.new(recommendation) %>
-        <%= recommendation_presenter.recommendation %>
+        <% if recommendation %>
+          <% recommendation_presenter = RecommendationPresenter.new(recommendation) %>
+          <%= recommendation_presenter.recommendation %>
+        <% end %>
 
         <div class="buttons clearfix">
           <div class="col-left">
@@ -21,7 +23,7 @@
           </div>
         </div>
 
-        <% unless gig.in_past? %>
+        <% if recommendation %>
           <div class="footer">
             <div class="inner">
               <sup>1</sup>Your account is set up to track your progress by

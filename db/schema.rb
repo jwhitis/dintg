@@ -11,25 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426145859) do
+ActiveRecord::Schema.define(version: 20150509123248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "configurations", force: true do |t|
-    t.string   "calendar_id"
-    t.decimal  "monthly_goal",   precision: 8, scale: 2
-    t.boolean  "exclude_unpaid",                         default: false,   null: false
+  create_table "configurations", force: :cascade do |t|
+    t.string   "calendar_id",  limit: 255
+    t.decimal  "monthly_goal",             precision: 8, scale: 2
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "time_period",                            default: "month", null: false
+    t.string   "time_period",  limit: 255,                         default: "month", null: false
   end
 
   add_index "configurations", ["user_id"], name: "index_configurations_on_user_id", using: :btree
 
-  create_table "gigs", force: true do |t|
-    t.decimal  "pay",        precision: 8, scale: 2
+  create_table "events", force: :cascade do |t|
+    t.decimal  "pay",                    precision: 8, scale: 2
     t.text     "summary"
     t.text     "location"
     t.datetime "starts_at"
@@ -37,15 +36,14 @@ ActiveRecord::Schema.define(version: 20150426145859) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "paid",                               default: false, null: false
-    t.string   "google_id",                          default: "",    null: false
+    t.string   "google_id",  limit: 255,                         default: "", null: false
   end
 
-  add_index "gigs", ["user_id"], name: "index_gigs_on_user_id", using: :btree
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
-  create_table "tokens", force: true do |t|
-    t.string   "access_token"
-    t.string   "refresh_token"
+  create_table "tokens", force: :cascade do |t|
+    t.string   "access_token",  limit: 255
+    t.string   "refresh_token", limit: 255
     t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,21 +52,21 @@ ActiveRecord::Schema.define(version: 20150426145859) do
 
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",               default: "", null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "email",               limit: 255, default: "", null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       default: 0,  null: false
+    t.integer  "sign_in_count",                   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "time_zone"
+    t.string   "provider",            limit: 255
+    t.string   "uid",                 limit: 255
+    t.string   "first_name",          limit: 255
+    t.string   "last_name",           limit: 255
+    t.string   "time_zone",           limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

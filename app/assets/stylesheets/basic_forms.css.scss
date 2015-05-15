@@ -38,6 +38,17 @@ form.basic-form {
     box-shadow: none;
   }
 
+  div.income-toggle, div.gig-toggle {
+    p {
+      margin: 0 10px 0 1px;
+      display: inline-block;
+    }
+
+    input[type="radio"] {
+      margin-top: 1px;
+    }
+  }
+
   div.currency {
     position: relative;
 
@@ -50,20 +61,6 @@ form.basic-form {
 
     input[type="text"] {
       padding-left: 25px;
-    }
-  }
-
-  div.checkbox {
-    margin: 0 0 15px 0;
-
-    input[type="checkbox"] {
-      width: 14px;
-      height: 14px;
-      margin: 1px 0 0 -22px;
-    }
-
-    label {
-      padding-left: 22px;
     }
   }
 

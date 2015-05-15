@@ -1,0 +1,62 @@
+<%= render "shared/validation_errors", resource: event %>
+
+<div class="form-group">
+  <%= f.label :summary, "Title", class: "sr-only" %>
+  <%= f.text_field :summary, placeholder: "Title", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :location, class: "sr-only" %>
+  <%= f.text_field :location, placeholder: "Location (optional)", class: "form-control" %>
+</div>
+
+<%= f.hidden_field :date %>
+
+<div class="form-group row times neg-top-margin">
+  <div class="col-xs-6">
+    <%= f.label :starts_at, "Start Time:" %>
+    <%= f.select(:starts_at, time_options_for_select(event.starts_at), {}, class: "form-control") %>
+  </div>
+
+  <div class="col-xs-6">
+    <%= f.label :ends_at, "End Time:" %>
+    <%= f.select(:ends_at, time_options_for_select(event.ends_at, 1), {}, class: "form-control") %>
+  </div>
+</div>
+
+<% if current_user.is_tracking_income? %>
+  <div class="form-group gig-toggle">
+    <p>Will you be paid for this event?</p>
+    <label class="radio-inline">
+      <input type="radio" name="gig-toggle" <%= "checked" unless event.is_a_gig? %> value="0" /> No
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="gig-toggle" <%= "checked" if event.is_a_gig? %> value="1" /> Yes
+    </label>
+  </div>
+
+  <div class="gig-fields" style="<%= "display: none;" unless event.is_a_gig? %>">
+    <div class="form-group currency neg-top-margin">
+      <%= f.label :pay, class: "instructions" do %>
+        Enter the amount that this event pays:
+      <% end %>
+      <%= fa_icon "dollar" %>
+      <%= f.text_field :pay, value: number_to_currency(event.pay, unit: ""), placeholder: "0.00",
+        class: "form-control" %>
+    </div>
+  </div>
+<% end %>
+
+<%= hidden_field_tag :confirm_submission %>
+
+<script type="text/javascript">
+  $("input[name='gig-toggle']").change(function() {
+    if ($(this).val() == "1") {
+      $(".gig-fields").fadeIn(200);
+    } else {
+      $(".gig-fields").fadeOut(200, function() {
+        $("#event_pay").val("");
+      });
+    }
+  });
+</script>

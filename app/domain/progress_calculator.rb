@@ -29,12 +29,7 @@ class ProgressCalculator
 
   def earned_for_period
     time_range = @dictionary.time_range_for_period
-
-    if @user.configuration.exclude_unpaid?
-      @user.gigs.paid.within_time_range(time_range).sum(:pay)
-    else
-      @user.gigs.within_time_range(time_range).sum(:pay)
-    end
+    @user.gigs.within_time_range(time_range).sum(:pay)
   end
 
   def goal_for_period

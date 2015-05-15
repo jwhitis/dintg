@@ -1,4 +1,4 @@
-div.event-list {
+div.google-event-list {
   font-weight: lighter;
   color: white;
   text-shadow: $basic-text-shadow;
@@ -22,6 +22,11 @@ div.event-list {
 
       &:last-child {
         padding-left: 5px;
+
+        span.all-day {
+          font-size: 12px;
+          font-weight: normal;
+        }
       }
     }
   }

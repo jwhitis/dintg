@@ -1,5 +1,5 @@
-div#gigs {
-  div.gig-list {
+div#events {
+  div.event-list {
     margin: 0 -15px;
     border-top: 1px solid rgba(black, .05);
 
@@ -14,7 +14,7 @@ div#gigs {
       min-height: 44px;
     }
 
-    div.gig {
+    div.event {
       font-weight: lighter;
       color: white;
       text-shadow: $basic-text-shadow;
@@ -139,7 +139,7 @@ div#gigs {
   }
 }
 
-div#gigs-new, div#gigs-edit {
+div#events-new, div#events-edit {
   div.times {
     text-align: center;
 
@@ -149,7 +149,7 @@ div#gigs-new, div#gigs-edit {
   }
 }
 
-div#create-gig-modal, div#update-gig-modal {
+div#create-event-modal, div#update-event-modal {
   h3.header {
     background-color: $light-blue;
   }
@@ -174,7 +174,7 @@ div#create-gig-modal, div#update-gig-modal {
       }
     }
 
-    div.event-list {
+    div.google-event-list {
       div.row {
         background-color: rgba($light-orange, .85);
 
@@ -235,13 +235,13 @@ div#create-gig-modal, div#update-gig-modal {
   }
 }
 
-div#create-gig-modal {
+div#create-event-modal {
   div.recommendation {
     margin-bottom: 20px;
   }
 }
 
-div#update-gig-modal {
+div#update-event-modal {
   p.confirmation {
     width: 200px;
     margin: 20px auto;

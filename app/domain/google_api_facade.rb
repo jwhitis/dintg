@@ -15,26 +15,40 @@ class GoogleAPIFacade
   end
 
   def list_events_for_month(year, month)
-    month_time = Time.new(year, month)
-    list_events(month_time.beginning_of_month, month_time.end_of_month)
+    min_end_time = Time.new(year, integer_to_month(month - 1)).end_of_month
+    max_start_time = Time.new(year, integer_to_month(month + 1)).beginning_of_month
+    list_events(min_end_time, max_start_time)
   end
 
-  def find_conflicts(gig)
-    events = list_events(gig.starts_at, gig.ends_at)
-    events.delete_if { |event| event.id == gig.google_id }
+  def integer_to_month(integer)
+    month = integer % 12
+    month == 0 ? 12 : month
   end
 
-  def list_events(start_time, end_time)
+  def find_conflicts(event)
+    google_events = list_events(event.starts_at, event.ends_at)
+    google_events.delete_if { |google_event| google_event.id == event.google_id }
+  end
+
+  def list_events(min_end_time, max_start_time)
     result = @client.execute(
       api_method: calendar_api.events.list,
       parameters: {
         "calendarId" => @user.configuration.calendar_id,
-        "timeMin" => start_time.iso8601,
-        "timeMax" => end_time.iso8601
+        # The documentation says that timeMin is inclusive and timeMax
+        # is exclusive, but I found them both to be exclusive.
+        # https://developers.google.com/google-apps/calendar/v3/reference/events/list
+        "timeMin" => min_end_time.iso8601,
+        "timeMax" => max_start_time.iso8601,
+        "timeZone" => formatted_time_zone
       }
     )
 
     result.data.items
+  end
+
+  def formatted_time_zone
+    ActiveSupport::TimeZone::MAPPING.fetch(@user.time_zone)
   end
 
   def create_event(event_params)

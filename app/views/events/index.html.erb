@@ -2,19 +2,19 @@
   Events
 <% end %>
 
-<div id="gigs">
-  <div class="gig-list">
-    <% @gigs_by_date.each do |date, gigs| %>
+<div id="events">
+  <div class="event-list">
+    <% @events_by_date.each do |date, events| %>
       <div class="date-separator">
         <%= date.strftime("%a %b %-d") %>
       </div>
-      <%= render gigs %>
+      <%= render events %>
     <% end %>
   </div>
 
   <div class="footer">
     <div class="inner">
-      <%= link_to "Add Event", new_gig_path, class: "btn-blue btn-block" %>
+      <%= link_to "Add Event", new_event_path, class: "btn-blue btn-block" %>
     </div>
   </div>
 </div>

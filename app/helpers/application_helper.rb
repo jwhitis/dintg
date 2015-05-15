@@ -11,13 +11,13 @@ module ApplicationHelper
   def previous_month_path(calendar)
     year = calendar.month == 1 ? calendar.year - 1 : calendar.year
     month = calendar.month == 1 ? 12 : calendar.month - 1
-    calendar_gigs_path(year: year, month: month)
+    calendar_events_path(year: year, month: month)
   end
 
   def next_month_path(calendar)
     year = calendar.month == 12 ? calendar.year + 1 : calendar.year
     month = calendar.month == 12 ? 1 : calendar.month + 1
-    calendar_gigs_path(year: year, month: month)
+    calendar_events_path(year: year, month: month)
   end
 
   def time_options_for_select(time, offset = 0, minute_step = 15, start_hour = 0)
@@ -56,13 +56,9 @@ module ApplicationHelper
   end
 
   def format_event_time(event)
-    "#{event.start.date_time.strftime("%l:%M%P")} - #{event.end.date_time.strftime("%l:%M%P")}".squish
-  end
-
-  def format_gig_time(gig)
-    content_tag(:span, gig.starts_at.strftime("%l:%M %p"), class: "start-time") +
+    content_tag(:span, event.starts_at.strftime("%l:%M %p"), class: "start-time") +
     tag(:br) +
-    content_tag(:span, gig.ends_at.strftime("%l:%M %p"), class: "end-time")
+    content_tag(:span, event.ends_at.strftime("%l:%M %p"), class: "end-time")
   end
 
   def template_contains_main_section?

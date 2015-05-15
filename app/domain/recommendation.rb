@@ -2,6 +2,10 @@ class Recommendation
   attr_reader :user, :time_period, :gig, :calculator
 
   def initialize(user, gig)
+    unless user.is_tracking_income?
+      raise ArgumentError, "User must have monthly goal for recommendation to be made."
+    end
+
     @user = user
     @time_period = @user.configuration.time_period
     @gig = gig

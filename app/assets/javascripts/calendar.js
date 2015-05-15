@@ -19,7 +19,7 @@ $(document).on("ready page:load", function() {
     if (event_list) {
       $("#events").html(event_list);
     } else {
-      $("#events").html("<p class='no-events'>You're wide open this day.</p>");
+      $("#events").html("<p class='no-events'>You don't have any events scheduled.</p>");
     }
 
     // Set "Add Event" button path

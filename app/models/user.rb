@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   has_one :token, dependent: :destroy
   has_one :configuration, dependent: :destroy
-  has_many :gigs, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :gigs, -> { where.not(pay: nil) }, class_name: "Event"
 
   accepts_nested_attributes_for :token
   accepts_nested_attributes_for :configuration
@@ -16,8 +17,11 @@ class User < ActiveRecord::Base
   end
 
   def has_completed_setup?
-    configuration.calendar_id.present? && configuration.monthly_goal.present? &&
-      self.time_zone.present?
+    configuration.calendar_id.present? && self.time_zone.present?
+  end
+
+  def is_tracking_income?
+    !!configuration.monthly_goal
   end
 
   def self.find_for_google_oauth2(auth)

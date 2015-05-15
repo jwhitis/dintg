@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :gigs, except: :show do
+  resources :events, except: :show do
     get "calendar", on: :collection
   end
 

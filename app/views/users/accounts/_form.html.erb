@@ -1,0 +1,65 @@
+<div class="form-group">
+  <%= f.label :time_zone, class: "instructions" do %>
+    Choose the time zone you live in:
+  <% end %>
+  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,
+    { default: "Central Time (US & Canada)" }, class: "form-control" %>
+</div>
+
+<%= f.fields_for :configuration, user.configuration do |config| %>
+  <div class="form-group neg-top-margin">
+    <%= config.label :calendar_id, class: "instructions" do %>
+      Choose the Google calendar where new events should be added:
+    <% end %>
+    <%= config.collection_select :calendar_id, @calendars, :id, :summary, {},
+      class: "form-control" %>
+  </div>
+<% end %>
+
+<div class="form-group income-toggle">
+  <p>Would you like to track your freelance income?</p>
+  <label class="radio-inline">
+    <input type="radio" name="income-toggle" <%= "checked" unless user.is_tracking_income? %>
+      value="0" /> No
+  </label>
+  <label class="radio-inline">
+    <input type="radio" name="income-toggle" <%= "checked" if user.is_tracking_income? %>
+      value="1" /> Yes
+  </label>
+</div>
+
+<div class="income-fields" style="<%= "display: none;" unless user.is_tracking_income? %>">
+  <%= f.fields_for :configuration do |config| %>
+    <div class="form-group currency neg-top-margin">
+      <%= config.label :monthly_goal, class: "instructions" do %>
+        Enter the amount that you want to make each <b>month</b>:
+      <% end %>
+      <%= fa_icon "dollar" %>
+      <%= config.text_field :monthly_goal,
+        value: number_to_currency(config.object.monthly_goal, unit: ""), placeholder: "0.00",
+        class: "form-control" %>
+    </div>
+
+    <% if user.has_completed_setup? %>
+      <div class="form-group time-period neg-top-margin">
+        <p class="instructions">Choose how you want your progress score to be calculated:</p>
+        <%= config.collection_radio_buttons :time_period, TimeRangeDictionary::TIME_PERIODS,
+          :to_s, :titleize do |builder| %>
+          <%= builder.label { builder.radio_button(class: "hidden") + builder.text } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $("input[name='income-toggle']").change(function() {
+    if ($(this).val() == "1") {
+      $(".income-fields").fadeIn(200);
+    } else {
+      $(".income-fields").fadeOut(200, function() {
+        $("#user_configuration_attributes_monthly_goal").val("");
+      });
+    }
+  });
+</script>
