@@ -3,14 +3,18 @@
 <% end %>
 
 <div id="events">
-  <div class="event-list">
-    <% @events_by_date.each do |date, events| %>
-      <div class="date-separator">
-        <%= date.strftime("%a %b %-d") %>
-      </div>
-      <%= render events %>
-    <% end %>
-  </div>
+  <% if @events_by_date.any? %>
+    <div class="event-list">
+      <% @events_by_date.each do |date, events| %>
+        <div class="date-separator">
+          <%= date.strftime("%a %b %-d") %>
+        </div>
+        <%= render events %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="no-events">You haven't added any events, yet.</p>
+  <% end %>
 
   <div class="footer">
     <div class="inner">

@@ -149,17 +149,6 @@ div#calendar {
 
     div#events {
       min-height: 155px;
-
-      p.no-events {
-        margin: 0 -15px;
-        padding: 8px 15px;
-        text-align: center;
-        font-size: 16px;
-        font-weight: lighter;
-        color: white;
-        text-shadow: $basic-text-shadow;
-        background-color: rgba($light-orange, .85);
-      }
     }
   }
 }
