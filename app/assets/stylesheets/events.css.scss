@@ -36,7 +36,7 @@ div#events {
               top: 17px;
               right: -6px;
               z-index: 9999;
-              font-size: 11px;
+              font-size: 10px;
               text-shadow: none;
             }
           }
@@ -145,6 +145,24 @@ div#events-new, div#events-edit {
 
     select {
       background-position: 96% 50%;
+    }
+  }
+}
+
+div#events-new {
+  div.date-in-past {
+    margin-bottom: 15px;
+
+    span.fa-stack {
+      top: 7px;
+
+      i.fa-check {
+        top: 4px;
+      }
+    }
+
+    p {
+      color: white;
     }
   }
 }

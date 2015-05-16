@@ -1,0 +1,38 @@
+div.info-box {
+  margin: 0 -15px;
+  padding: 10px 0 11px 0;
+  color: white;
+  background-color: $orange;
+
+  div.col-left {
+    width: 25%;
+    float: left;
+
+    div.circle {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto;
+      text-align: center;
+      border-radius: 50%;
+      border: 2px solid white;
+      background-color: $dark-blue;
+      box-shadow: $basic-box-shadow;
+    }
+  }
+
+  div.col-right {
+    width: 75%;
+    float: right;
+
+    p {
+      margin: 0;
+      padding-right: 15px;
+      line-height: 16px;
+      text-shadow: $basic-text-shadow;
+
+      &.top-margin {
+        margin-top: 8px;
+      }
+    }
+  }
+}

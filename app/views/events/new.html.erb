@@ -4,6 +4,10 @@
 
 <div id="events-new">
   <%= form_for @event, html: { class: "basic-form" } do |f| %>
+    <% if @event.date.to_date < Date.today %>
+      <%= render "date_in_past" %>
+    <% end %>
+
     <%= render "form", f: f, event: @event %>
 
     <div class="footer">
